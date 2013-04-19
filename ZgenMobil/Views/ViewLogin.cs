@@ -10,6 +10,7 @@ namespace ZgenMobil
 	public partial class ViewLogin : UIViewController
 	{
 
+		string hanz;
 
 		ViewMitarbeiterselektion viewMitarbeiterselektion;
 

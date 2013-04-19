@@ -102,6 +102,7 @@
     <Compile Include="Views\ViewMitarbeiterselektion.designer.cs">
       <DependentUpon>ViewMitarbeiterselektion.cs</DependentUpon>
     </Compile>
+    <Compile Include="test.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

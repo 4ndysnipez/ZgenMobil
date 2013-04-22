@@ -10,17 +10,18 @@ namespace ZgenMobil
 {
 	public class HttpRestController
 	{
-		LoadingOverlay loadingOverlay;
-		const string basic_url 					= "http://192.168.12.115:8000/sap/opu/sdata/";
-		const string serviceEmployee 			= "SCD/ZGEN_MI_EMPLOYEES/EMPLOYEES";
-		const string serviceOrgViews 			= "SCD/ZGEN_MI_ORG_VIEWS/ORGVIEWS";
-		const string serviceRefGroups 			= "SCD/ZGEN_MI_REF_GROUPS/REF_GROUPS";
-		const string serviceRefReasons 			= "SCD/ZGEN_MI_REF_REASONS/REF_REASONS";
-		const string serviceReferences 			= "SCD/ZGEN_MI_REFERENCES/REFERANCES";
-		const string serviceReference 			= "SCD/ZGEN_MI_REFERENCES/REFERANCE";
-		const string servicePreSelections		= "SCD/ZGEN_MI_PRESELECTIONS/PRESELECTIONS";
-		const string serviceReferenceSteps 		= "SCD/ZGEN_MI_REF_REFERENCE_STEPS/REFERANCE_STEPS";
-		const string serviceReferencePreviews 	= "SCD/ZGEN_MI_REF_REFERENCE_PREVIEW/REFERANCE_PREVIEWS";
+
+		private const string basic_url 					= "http://192.168.12.115:8000/sap/opu/sdata/";
+
+		private const string serviceEmployee 			= "SCD/ZGEN_MI_EMPLOYEES/EMPLOYEES";
+		private const string serviceOrgViews 			= "SCD/ZGEN_MI_ORG_VIEWS/ORGVIEWS";
+		private const string serviceRefGroups 			= "SCD/ZGEN_MI_REF_GROUPS/REF_GROUPS";
+		private const string serviceRefReasons 			= "SCD/ZGEN_MI_REF_REASONS/REF_REASONS";
+		private const string serviceReferences 			= "SCD/ZGEN_MI_REFERENCES/REFERANCES";
+		private const string serviceReference 			= "SCD/ZGEN_MI_REFERENCES/REFERANCE";
+		private const string servicePreSelections		= "SCD/ZGEN_MI_PRESELECTIONS/PRESELECTIONS";
+		private const string serviceReferenceSteps 		= "SCD/ZGEN_MI_REF_REFERENCE_STEPS/REFERANCE_STEPS";
+		private const string serviceReferencePreviews 	= "SCD/ZGEN_MI_REF_REFERENCE_PREVIEW/REFERANCE_PREVIEWS";
 
 		/*
 		bool loggedIn = false;

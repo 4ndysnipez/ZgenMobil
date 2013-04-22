@@ -1,17 +1,20 @@
-
 using System;
 using System.Drawing;
-
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+
+
 
 namespace ZgenMobil
 {
 	public partial class ViewLogin : UIViewController
 	{
-		
+
+
 		ViewMitarbeiterselektion viewMitarbeiterselektion;
+		LoadingOverlay loadingOverlay;
 		HttpRestController httpRestController;
+
 		
 		public ViewLogin () : base ("ViewLogin", null)
 		{
@@ -49,24 +52,33 @@ namespace ZgenMobil
 			return "Basic " + base64;
 			
 		}
-		
+
 		partial void actionBtnAnmelden (NSObject sender)		
 		{
-			
+
+			loadingOverlay = new LoadingOverlay(UIScreen.MainScreen.Bounds);
+			Console.WriteLine("overlay created");
+			View.Add(loadingOverlay);
+			Console.WriteLine("overlay added");
+
+
+
+			//string login = base64Encode(txtFldUser.Text, txtFldPasswort.Text);
+			string logindata = base64Encode("p20000000", "scdsoft1");
+			Console.WriteLine("logindata: " + logindata);
+
 			if(httpRestController == null){
+				Console.WriteLine("create httpcctrl");
 				httpRestController =  new HttpRestController();
 			}
-			
-			
-			//string login = base64Encode(txtFldUser.Text, txtFldPasswort.Text);
-			string login = base64Encode("p20000000", "scdsoft1");
-			//string test = httpRestController.buildRestUrl("test", login);
-			string test = httpRestController.buildRestUrl("test", login);
-			
-			
+
+			string test = httpRestController.buildRestUrl("test", logindata);
+
 			if(test != "OK")
 			{
-				new UIAlertView("fehler", "nix gut",null,"OK",null).Show();
+				loadingOverlay.Hide();
+				new UIAlertView("Login Error", "User unauthorised",null,"OK",null).Show();
+
 			}
 			
 			else if(test == "OK")
@@ -79,11 +91,11 @@ namespace ZgenMobil
 				{
 					Console.WriteLine("mitarb ist schon da");
 				}
+
+				loadingOverlay.Hide();
 				this.NavigationController.PushViewController(viewMitarbeiterselektion, true);
+
 			}
-			
-			
-			
 			
 		}
 		

@@ -103,6 +103,7 @@
       <DependentUpon>ViewMitarbeiterselektion.cs</DependentUpon>
     </Compile>
     <Compile Include="Controller\HttpRestController.cs" />
+    <Compile Include="Controller\LoadingOverlay.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

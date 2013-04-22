@@ -16,6 +16,7 @@ namespace ZgenMobil
 		public ViewMitarbeiterselektion () : base ("ViewMitarbeiterselektion", null)
 		{
 			this.Title = "Mitarbeiterselektion";
+			this.NavigationItem.SetHidesBackButton(true, true);
 		}
 		
 		public override void DidReceiveMemoryWarning ()
@@ -29,13 +30,14 @@ namespace ZgenMobil
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			labelDate.Text = System.DateTime.Now.ToString();
 			
 			
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
-		
+
+
 		partial void actionBtnDate (NSObject sender)
 		{
 			

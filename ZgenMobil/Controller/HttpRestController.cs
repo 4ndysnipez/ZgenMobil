@@ -88,6 +88,7 @@ namespace ZgenMobil
 			else if(loggedUser_data != null)
 			{
 				Console.WriteLine("login case !null");
+				select_service = serviceEmployee;
 			}
 			
 			string whole_url = basic_url + select_service;

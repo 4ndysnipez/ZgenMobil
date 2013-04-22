@@ -12,7 +12,7 @@ namespace ZgenMobil
 	{
 
 		private const string basic_url 					= "http://192.168.12.115:8000/sap/opu/sdata/";
-
+		//private const string basic_url 					= "http://scdecc.scdintern.de:8000/sap/opu/sdata/";
 		private const string serviceEmployee 			= "SCD/ZGEN_MI_EMPLOYEES/EMPLOYEES";
 		private const string serviceOrgViews 			= "SCD/ZGEN_MI_ORG_VIEWS/ORGVIEWS";
 		private const string serviceRefGroups 			= "SCD/ZGEN_MI_REF_GROUPS/REF_GROUPS";

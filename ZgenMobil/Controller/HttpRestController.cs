@@ -11,8 +11,30 @@ namespace ZgenMobil
 	public class HttpRestController
 	{
 		LoadingOverlay loadingOverlay;
-		const string basic_url = "http://192.168.12.115:8000/sap/opu/sdata/";
-		const string serviceEmployee = "SCD/ZGEN_MI_EMPLOYEES/EMPLOYEES";
+		const string basic_url 					= "http://192.168.12.115:8000/sap/opu/sdata/";
+		const string serviceEmployee 			= "SCD/ZGEN_MI_EMPLOYEES/EMPLOYEES";
+		const string serviceOrgViews 			= "SCD/ZGEN_MI_ORG_VIEWS/ORGVIEWS";
+		const string serviceRefGroups 			= "SCD/ZGEN_MI_REF_GROUPS/REF_GROUPS";
+		const string serviceRefReasons 			= "SCD/ZGEN_MI_REF_REASONS/REF_REASONS";
+		const string serviceReferences 			= "SCD/ZGEN_MI_REFERENCES/REFERANCES";
+		const string serviceReference 			= "SCD/ZGEN_MI_REFERENCES/REFERANCE";
+		const string servicePreSelections		= "SCD/ZGEN_MI_PRESELECTIONS/PRESELECTIONS";
+		const string serviceReferenceSteps 		= "SCD/ZGEN_MI_REF_REFERENCE_STEPS/REFERANCE_STEPS";
+		const string serviceReferencePreviews 	= "SCD/ZGEN_MI_REF_REFERENCE_PREVIEW/REFERANCE_PREVIEWS";
+
+		/*
+		bool loggedIn = false;
+
+		public bool LoggedIn {
+			get {
+				return loggedIn;
+			}
+			set {
+				loggedIn = value;
+			}
+		}
+		*/
+
 		string loggedUser_data;
 		
 		public string LoggedUser_data {
@@ -27,50 +49,7 @@ namespace ZgenMobil
 		public HttpRestController ()
 		{
 		}
-		
-		
-		//Convert to Base64
-		public string base64Encode(string http_user, string http_pw){
-			
-			//http_user = "p20000000";
-			//http_pw = "scdsoft1";
-			string user_pw = http_user + ":" + http_pw;
-			
-			System.Text.ASCIIEncoding encoding = new System.Text.ASCIIEncoding();
-			byte[] bytes = encoding.GetBytes(user_pw);
-			string base64 = System.Convert.ToBase64String(bytes);
-			
-			return "Basic " + base64;
-			
-		}
-		/*
-		public string testUrl(string select_service, string login_data)
-		{
-			if(loggedUser_data == null)
-			{
-				Console.WriteLine("login case IS null");
-				loggedUser_data = login_data;
-				select_service = serviceEmployee;
-			}
 
-			else if(loggedUser_data != null)
-			{
-				Console.WriteLine("login case !null");;
-			}
-
-			string whole_url = basic_url + select_service;
-			//create HttpREST request
-			var request = HttpWebRequest.Create(new Uri(whole_url));
-			request.Headers["Authorization"] = login_data;
-			request.ContentType = "application/atom+xml";
-			request.Method = "GET";
-
-			HttpWebResponse resp = (HttpWebResponse)request.GetResponse();
-
-
-
-		}
-*/
 		public string buildRestUrl(string select_service, string login_data)
 		{
 

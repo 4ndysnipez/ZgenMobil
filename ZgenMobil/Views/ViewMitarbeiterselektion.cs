@@ -9,10 +9,10 @@ namespace ZgenMobil
 {
 	public partial class ViewMitarbeiterselektion : UIViewController
 	{
-
+		
 		ActionSheetDatePicker datePicker;
-
-
+		
+		
 		public ViewMitarbeiterselektion () : base ("ViewMitarbeiterselektion", null)
 		{
 			this.Title = "Mitarbeiterselektion";
@@ -29,30 +29,31 @@ namespace ZgenMobil
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-
+			
 			labelDate.Text = System.DateTime.Now.ToString();
-
+			
 			
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
-
+		
 		partial void actionBtnDate (NSObject sender)
 		{
-
+			
 			//Console.WriteLine(this.View.Frame.ToString());
-
+			
 			datePicker = new ActionSheetDatePicker(this.View);
-
+			
 			datePicker.Title = "Datum wählen...";
 			datePicker.Picker.Mode = UIDatePickerMode.Date;
 			
 			datePicker.Picker.ValueChanged += (s, e) => {
-
+				
 				labelDate.Text = (s as UIDatePicker).Date.ToString();
 			};
 			
 			datePicker.Show();
 		}
+		
 	}
 }
 

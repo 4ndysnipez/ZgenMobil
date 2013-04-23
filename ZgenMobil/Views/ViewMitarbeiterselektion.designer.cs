@@ -14,14 +14,33 @@ namespace ZgenMobil
 		[Outlet]
 		MonoTouch.UIKit.UILabel labelDate { get; set; }
 
+		[Outlet]
+		MonoTouch.UIKit.UIPickerView pickerView { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel labelSelektion { get; set; }
+
 		[Action ("actionBtnDate:")]
 		partial void actionBtnDate (MonoTouch.Foundation.NSObject sender);
+
+		[Action ("actionBtnSelektion:")]
+		partial void actionBtnSelektion (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
 			if (labelDate != null) {
 				labelDate.Dispose ();
 				labelDate = null;
+			}
+
+			if (pickerView != null) {
+				pickerView.Dispose ();
+				pickerView = null;
+			}
+
+			if (labelSelektion != null) {
+				labelSelektion.Dispose ();
+				labelSelektion = null;
 			}
 		}
 	}

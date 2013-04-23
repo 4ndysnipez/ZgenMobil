@@ -32,18 +32,10 @@ namespace ZgenMobil
 			base.ViewDidLoad ();
 
 			labelDate.Text = System.DateTime.Now.ToString();
+			labelSelektion.Text = "";
+			toolbarSelektion.Hidden = true;
 
-			PickerViewController model = new PickerViewController("Alle Mitarbeiter" , "Direkt unterstellte" , "Alle Org-Einheiten");
-
-			model.fruitSelected += (object sender, EventArgs e) => 
-			{
-				labelSelektion.Text = model.SelectedFruit;
-				pickerView.Hidden = true;
-			};
-
-			pickerView.Model = model;
-			pickerView.Hidden = true;
-			
+						
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
@@ -65,9 +57,27 @@ namespace ZgenMobil
 			
 			datePicker.Show();
 		}
+
 		partial void actionBtnSelektion (NSObject sender)
 		{
+			PickerViewController model = new PickerViewController("Alle Mitarbeiter" , "Direkt unterstellte" , "Alle Org-Einheiten");
+						
+			pickerView.Model = model;
 			pickerView.Hidden = false;
+			toolbarSelektion.Hidden = false;
+
+			model.fruitSelected += (object se, EventArgs ea) => 
+			{
+				labelSelektion.Text = model.SelectedFruit;
+				//pickerView.Hidden = true;
+			};
+
+		}
+
+		partial void actionSelektionDone (NSObject sender)
+		{
+			pickerView.Hidden = true;
+			toolbarSelektion.Hidden = true;
 		}
 		
 	}

@@ -20,11 +20,17 @@ namespace ZgenMobil
 		[Outlet]
 		MonoTouch.UIKit.UILabel labelSelektion { get; set; }
 
+		[Outlet]
+		MonoTouch.UIKit.UIToolbar toolbarSelektion { get; set; }
+
 		[Action ("actionBtnDate:")]
 		partial void actionBtnDate (MonoTouch.Foundation.NSObject sender);
 
 		[Action ("actionBtnSelektion:")]
 		partial void actionBtnSelektion (MonoTouch.Foundation.NSObject sender);
+
+		[Action ("actionSelektionDone:")]
+		partial void actionSelektionDone (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -41,6 +47,11 @@ namespace ZgenMobil
 			if (labelSelektion != null) {
 				labelSelektion.Dispose ();
 				labelSelektion = null;
+			}
+
+			if (toolbarSelektion != null) {
+				toolbarSelektion.Dispose ();
+				toolbarSelektion = null;
 			}
 		}
 	}

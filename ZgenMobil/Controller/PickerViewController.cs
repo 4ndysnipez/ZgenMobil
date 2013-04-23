@@ -9,9 +9,29 @@ namespace ZgenMobil
 		public string SelectedFruit { get; set; }
 		public event EventHandler fruitSelected;
 
+		UIToolbar _toolbar;
+		UIBarButtonItem _doneButton;
+
 		public PickerViewController (params string[] fruits)
 		{
 			this.fruits = fruits;
+			_doneButton = new UIBarButtonItem(UIBarButtonSystemItem.Done, null, null);
+			//_doneButton.Clicked += (object sender, EventArgs e) => {
+			//	_actionSheet.DismissWithClickedButtonIndex (0, true); 
+
+			_toolbar = new UIToolbar();//new RectangleF(0, 0, _actionSheet.Frame.Width, 10));
+			_toolbar.BarStyle = UIBarStyle.Black;
+			_toolbar.Translucent = true;
+
+			_toolbar.Items = new UIBarButtonItem[] {
+				new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace, null, null),
+				_doneButton
+			};
+
+			_toolbar.SizeToFit();
+
+
+
 		}
 
 		private void OnFruitSelected()

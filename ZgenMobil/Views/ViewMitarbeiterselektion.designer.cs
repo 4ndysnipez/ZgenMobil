@@ -23,6 +23,9 @@ namespace ZgenMobil
 		[Outlet]
 		MonoTouch.UIKit.UIToolbar toolbarSelektion { get; set; }
 
+		[Outlet]
+		MonoTouch.UIKit.UITableView tableView { get; set; }
+
 		[Action ("actionBtnDate:")]
 		partial void actionBtnDate (MonoTouch.Foundation.NSObject sender);
 
@@ -52,6 +55,11 @@ namespace ZgenMobil
 			if (toolbarSelektion != null) {
 				toolbarSelektion.Dispose ();
 				toolbarSelektion = null;
+			}
+
+			if (tableView != null) {
+				tableView.Dispose ();
+				tableView = null;
 			}
 		}
 	}

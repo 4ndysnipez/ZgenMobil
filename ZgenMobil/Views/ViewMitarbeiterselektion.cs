@@ -35,6 +35,9 @@ namespace ZgenMobil
 			labelSelektion.Text = "";
 			toolbarSelektion.Hidden = true;
 
+			TableViewSource source = new TableViewSource("Franz", "Dieter" , "Otmar");
+			tableView.Source = source;
+
 						
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
@@ -60,9 +63,11 @@ namespace ZgenMobil
 
 		partial void actionBtnSelektion (NSObject sender)
 		{
+
 			PickerViewController model = new PickerViewController("Alle Mitarbeiter" , "Direkt unterstellte" , "Alle Org-Einheiten");
 						
 			pickerView.Model = model;
+			tableView.Hidden = true;
 			pickerView.Hidden = false;
 			toolbarSelektion.Hidden = false;
 
@@ -78,6 +83,7 @@ namespace ZgenMobil
 		{
 			pickerView.Hidden = true;
 			toolbarSelektion.Hidden = true;
+			tableView.Hidden = false;
 		}
 		
 	}

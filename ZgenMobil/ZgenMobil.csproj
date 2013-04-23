@@ -105,6 +105,7 @@
     <Compile Include="Controller\HttpRestController.cs" />
     <Compile Include="Controller\LoadingOverlay.cs" />
     <Compile Include="Controller\PickerViewController.cs" />
+    <Compile Include="Controller\TableViewSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

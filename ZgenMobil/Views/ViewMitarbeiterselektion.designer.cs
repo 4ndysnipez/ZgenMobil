@@ -26,6 +26,12 @@ namespace ZgenMobil
 		[Outlet]
 		MonoTouch.UIKit.UITableView tableView { get; set; }
 
+		[Outlet]
+		MonoTouch.UIKit.UIToolbar toolbarDate { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIDatePicker datumPicker { get; set; }
+
 		[Action ("actionBtnDate:")]
 		partial void actionBtnDate (MonoTouch.Foundation.NSObject sender);
 
@@ -34,6 +40,9 @@ namespace ZgenMobil
 
 		[Action ("actionSelektionDone:")]
 		partial void actionSelektionDone (MonoTouch.Foundation.NSObject sender);
+
+		[Action ("actionBtnDateDone:")]
+		partial void actionBtnDateDone (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -60,6 +69,16 @@ namespace ZgenMobil
 			if (tableView != null) {
 				tableView.Dispose ();
 				tableView = null;
+			}
+
+			if (toolbarDate != null) {
+				toolbarDate.Dispose ();
+				toolbarDate = null;
+			}
+
+			if (datumPicker != null) {
+				datumPicker.Dispose ();
+				datumPicker = null;
 			}
 		}
 	}

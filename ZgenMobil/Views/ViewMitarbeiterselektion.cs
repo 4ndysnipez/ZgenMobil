@@ -11,6 +11,8 @@ namespace ZgenMobil
 	{
 		
 		ActionSheetDatePicker datePicker;
+		ViewZeugnisart viewZeugnisart;
+		TableViewSource tableViewSource;
 		
 		
 		public ViewMitarbeiterselektion () : base ("ViewMitarbeiterselektion", null)
@@ -35,8 +37,8 @@ namespace ZgenMobil
 			labelSelektion.Text = "";
 			toolbarSelektion.Hidden = true;
 
-			TableViewSource source = new TableViewSource("Franz", "Dieter" , "Otmar");
-			tableView.Source = source;
+			tableViewSource = new TableViewSource(this , "Franz", "Dieter" , "Otmar");
+			tableView.Source = tableViewSource;
 
 						
 			// Perform any additional setup after loading the view, typically from a nib.
@@ -71,9 +73,12 @@ namespace ZgenMobil
 			pickerView.Hidden = false;
 			toolbarSelektion.Hidden = false;
 
-			model.fruitSelected += (object se, EventArgs ea) => 
+			model.selektionSelected += (object se, EventArgs ea) => 
 			{
-				labelSelektion.Text = model.SelectedFruit;
+				labelSelektion.Text = model.SelectedSelektion;
+
+
+
 				//pickerView.Hidden = true;
 			};
 
@@ -84,6 +89,17 @@ namespace ZgenMobil
 			pickerView.Hidden = true;
 			toolbarSelektion.Hidden = true;
 			tableView.Hidden = false;
+		}
+
+		public void mitarbeiterSelected(string name)
+		{
+			if(viewZeugnisart == null){
+
+				viewZeugnisart =  new ViewZeugnisart();
+			}
+
+			this.NavigationController.PushViewController(viewZeugnisart, true);
+			viewZeugnisart.setLabelName(name);
 		}
 		
 	}

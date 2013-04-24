@@ -2,6 +2,7 @@ using System;
 using System.Net;
 using System.Xml;
 using System.IO;
+using System.Collections.Generic;
 
 
 
@@ -97,17 +98,44 @@ namespace ZgenMobil
 					doc.LoadXml(readerText);
 					
 					resp.Close();
-					
+
+
+					List<XmlNodeList> xmlNodeList = new List<XmlNodeList>();
+					xmlNodeList.Add(doc.GetElementsByTagName("d:PERNR"));
+					xmlNodeList.Add(doc.GetElementsByTagName("d:ENAME"));
+					xmlNodeList.Add(doc.GetElementsByTagName("d:ORGTX"));
+					xmlNodeList.Add(doc.GetElementsByTagName("d:PERSK"));
+					xmlNodeList.Add(doc.GetElementsByTagName("d:BTRTX"));
+
+					List<XmlNode> xmlNode = new List<XmlNode>();
+
+					int hanz = 0;
+					foreach(XmlNodeList node in xmlNodeList)
+					{
+						xmlNode.Add(node.Item(hanz));
+						hanz++;
+					}
+
+					foreach(XmlNode node in xmlNode)
+					{
+						Console.WriteLine("fettzzz " + node.InnerText.ToString());
+					}
+
 					XmlNodeList propList 	= doc.GetElementsByTagName("m:properties");
 					XmlNodeList pernrList 	= doc.GetElementsByTagName("d:PERNR");
 					XmlNodeList enameList	= doc.GetElementsByTagName("d:ENAME");
 					XmlNodeList orgtxList 	= doc.GetElementsByTagName("d:ORGTX");
 					XmlNodeList perskList 	= doc.GetElementsByTagName("d:PERSK");
 					XmlNodeList btrtxList 	= doc.GetElementsByTagName("d:BTRTX");
-					
+
+
+
+				
 					Console.WriteLine("count " + pernrList.Count);
 					Console.WriteLine("prop: " + propList[0].InnerText);
-					
+
+
+
 					for(int i=0; i < pernrList.Count; i++){
 						XmlNode pernrItem = pernrList.Item(i);
 						XmlNode enameItem = enameList.Item(i);

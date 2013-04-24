@@ -5,13 +5,30 @@ namespace ZgenMobil
 {
 	public class TableViewSource : UITableViewSource 
 	{
+		private ViewMitarbeiterselektion _parentView;
+		ViewMitarbeiterselektion viewMitarbeiterselektion;
+		UITableViewCell row;
 		private string[] _items;
+		public string SelectedRow { get; set; }
+		//public event EventHandler rowSelected;
+
 		//UIImage img { get; set; }
 
-		public TableViewSource (params string[] items)
+		public TableViewSource (ViewMitarbeiterselektion parentView, params string[] items)
 		{
 			_items = items;
+			_parentView = parentView;
 		}
+
+	//	private void OnRowSelected()
+	//	{
+	//		if(_items != null)
+	//		{
+				//rowSelected(this , EventArgs.Empty);
+
+	//		}
+	//	}
+
 
 		public override int NumberOfSections (UITableView tableView)
 		{
@@ -23,26 +40,49 @@ namespace ZgenMobil
 			return _items.Length;
 		}
 
-		public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+		public override UITableViewCell GetCell(UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 		{
-			UITableViewCell cell;
+
+
+
 			//cell = tableView.DequeueReusableCell ("Placeholder");
 			//cell = new UITableViewCell(UITableViewCellStyle.Subtitle, null);
-			cell = new UITableViewCell(UITableViewCellStyle.Value1, null);
-				//(UITableViewCellStyle.Subtitle, "Placeholder");
-			cell.SelectionStyle = UITableViewCellSelectionStyle.Blue;
 
-			cell.DetailTextLabel.TextAlignment = UITextAlignment.Center;
+			row = new UITableViewCell(UITableViewCellStyle.Value1, null);
+
+				//(UITableViewCellStyle.Subtitle, "Placeholder");
+
+			row.SelectionStyle = UITableViewCellSelectionStyle.Blue;
+
+			row.DetailTextLabel.TextAlignment = UITextAlignment.Center;
 
 			//TODO
 			//create string[] wie bei _items
-			cell.DetailTextLabel.Text = "Textiiiii";
-			cell.ImageView.Image = UIImage.FromFile("img/scdsoftLogo.png");
+			row.DetailTextLabel.Text = "Textiiiii";
+			row.ImageView.Image = UIImage.FromFile("img/scdsoftLogo.png");
 
-			cell.TextLabel.Text = _items[indexPath.Row];
+			row.TextLabel.Text = _items[indexPath.Row];
 
-			return cell;
+			return row;
 		}
+
+		public override void RowSelected(UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+		{
+			string name = _items[indexPath.Row].ToString();
+			Console.WriteLine(name + " JOOOOOOOOO");
+			//SelectedRow = _items[indexPath];
+			//OnRowSelected();
+
+//			if(viewMitarbeiterselektion == null){
+
+//				viewMitarbeiterselektion =  new ViewMitarbeiterselektion();
+//			}
+
+			_parentView.mitarbeiterSelected(name);
+
+		}
+
+
 	}
 }
 

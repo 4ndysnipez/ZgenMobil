@@ -95,6 +95,7 @@ namespace ZgenMobil
 
 				loadingOverlay.Hide();
 				this.NavigationController.PushViewController(viewMitarbeiterselektion, true);
+				//this.NavigationController.PushViewController(viewMitarbeiterselektion, true);
 
 			}
 			

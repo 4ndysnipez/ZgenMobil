@@ -5,47 +5,49 @@ namespace ZgenMobil
 {
 	public class PickerViewController : UIPickerViewModel
 	{
-		private string[] fruits;
-		public string SelectedFruit { get; set; }
-		public event EventHandler fruitSelected;
+		private string[] _selektionen;
+		public string SelectedSelektion { get; set; }
+		public event EventHandler selektionSelected;
 
-		UIToolbar _toolbar;
-		UIBarButtonItem _doneButton;
+		//UIToolbar _toolbar;
+		//UIBarButtonItem _doneButton;
 
-		public PickerViewController (params string[] fruits)
+		public PickerViewController (params string[] selektionen)
 		{
-			this.fruits = fruits;
-			_doneButton = new UIBarButtonItem(UIBarButtonSystemItem.Done, null, null);
+			this._selektionen = selektionen;
+	//		_doneButton = new UIBarButtonItem(UIBarButtonSystemItem.Done, null, null);
 			//_doneButton.Clicked += (object sender, EventArgs e) => {
 			//	_actionSheet.DismissWithClickedButtonIndex (0, true); 
 
-			_toolbar = new UIToolbar();//new RectangleF(0, 0, _actionSheet.Frame.Width, 10));
-			_toolbar.BarStyle = UIBarStyle.Black;
-			_toolbar.Translucent = true;
+		//	var flexibleSpace = new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace);
 
-			_toolbar.Items = new UIBarButtonItem[] {
-				new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace, null, null),
-				_doneButton
-			};
+		//	_toolbar = new UIToolbar();//new RectangleF(0, 0, _actionSheet.Frame.Width, 10));
+		//	_toolbar.BarStyle = UIBarStyle.Black;
+		//	_toolbar.Translucent = true;
+			//_toolbar.SetItems(new [] { _doneButton } , false);
 
-			_toolbar.SizeToFit();
+			//_toolbar.Items = new UIBarButtonItem[] {
+			//	new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace, null, null),
+			//	_doneButton
+			//};
 
 
+			//_toolbar.SizeToFit();
 
 		}
 
-		private void OnFruitSelected()
+		private void OnSelektionSelected()
 		{
-			if(fruitSelected != null)
+			if(_selektionen != null)
 			{
-				fruitSelected(this , EventArgs.Empty);
+				selektionSelected(this , EventArgs.Empty);
 			}
 		}
 
 		public override void Selected(UIPickerView picker, int row, int component)
 		{
-			SelectedFruit = fruits[row];
-			OnFruitSelected();
+			SelectedSelektion = _selektionen[row];
+			OnSelektionSelected();
 		}
 
 		public override int GetComponentCount(UIPickerView picker)
@@ -55,12 +57,12 @@ namespace ZgenMobil
 
 		public override int GetRowsInComponent(UIPickerView picker, int component)
 		{
-			return fruits.Length;
+			return _selektionen.Length;
 		}
 
 		public override string GetTitle(UIPickerView picker, int row, int component)
 		{
-			return fruits[row];
+			return _selektionen[row];
 		}
 
 	}

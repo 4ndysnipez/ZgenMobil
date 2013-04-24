@@ -106,11 +106,16 @@
     <Compile Include="Controller\LoadingOverlay.cs" />
     <Compile Include="Controller\PickerViewController.cs" />
     <Compile Include="Controller\TableViewSource.cs" />
+    <Compile Include="Views\ViewZeugnisart.cs" />
+    <Compile Include="Views\ViewZeugnisart.designer.cs">
+      <DependentUpon>ViewZeugnisart.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <InterfaceDefinition Include="Views\ViewLogin.xib" />
     <InterfaceDefinition Include="Views\ViewMitarbeiterselektion.xib" />
+    <InterfaceDefinition Include="Views\ViewZeugnisart.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\img\scdsoftLogo.png" />

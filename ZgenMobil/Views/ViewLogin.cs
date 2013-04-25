@@ -63,26 +63,27 @@ namespace ZgenMobil
 			Console.WriteLine("overlay added");
 
 
-
+			//TODO: statische login wegmachen
 			//string login = base64Encode(txtFldUser.Text, txtFldPasswort.Text);
 			string logindata = base64Encode("p20000000", "scdsoft1");
 			Console.WriteLine("logindata: " + logindata);
 
 			if(httpRestController == null){
 				Console.WriteLine("create httpcctrl");
-				httpRestController =  new HttpRestController();
+				httpRestController = HttpRestController.Instance;
 			}
 
-			string test = httpRestController.buildRestUrl("test", logindata);
+			string respRest = httpRestController.buildRestUrl("SCD/ZGEN_MI_ORG_VIEWS/ORGVIEWS", logindata);
+			httpRestController.buildRestUrl(respRest, logindata);
 
-			if(test != "OK")
+			if(respRest != "OK")
 			{
 				loadingOverlay.Hide();
 				new UIAlertView("Login Error", "User unauthorised",null,"OK",null).Show();
 
 			}
 			
-			else if(test == "OK")
+			else if(respRest == "OK")
 			{
 				if(viewMitarbeiterselektion == null){
 					Console.WriteLine("mitarb ist null");
@@ -92,11 +93,8 @@ namespace ZgenMobil
 				{
 					Console.WriteLine("mitarb ist schon da");
 				}
-
 				loadingOverlay.Hide();
 				this.NavigationController.PushViewController(viewMitarbeiterselektion, true);
-				//this.NavigationController.PushViewController(viewMitarbeiterselektion, true);
-
 			}
 			
 		}

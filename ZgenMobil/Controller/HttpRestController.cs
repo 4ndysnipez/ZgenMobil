@@ -11,7 +11,21 @@ namespace ZgenMobil
 {
 	public class HttpRestController
 	{
+		private static HttpRestController instance;
 
+		public static HttpRestController Instance {
+			get {
+				if(instance == null)
+				{
+					instance = new HttpRestController();
+				}
+				return instance;
+			}
+			set {
+				instance = value;
+			}
+		}
+	
 		private const string basic_url 					= "http://192.168.12.115:8000/sap/opu/sdata/";
 		//private const string basic_url 					= "http://scdecc.scdintern.de:8000/sap/opu/sdata/";
 		private const string serviceEmployee 			= "SCD/ZGEN_MI_EMPLOYEES/EMPLOYEES";
@@ -24,31 +38,33 @@ namespace ZgenMobil
 		private const string serviceReferenceSteps 		= "SCD/ZGEN_MI_REF_REFERENCE_STEPS/REFERANCE_STEPS";
 		private const string serviceReferencePreviews 	= "SCD/ZGEN_MI_REF_REFERENCE_PREVIEW/REFERANCE_PREVIEWS";
 
-		/*
-		bool loggedIn = false;
 
-		public bool LoggedIn {
+
+		string loggedUser;
+
+		public string LoggedUser {
 			get {
-				return loggedIn;
+				return loggedUser;
 			}
 			set {
-				loggedIn = value;
+				loggedUser = value;
 			}
 		}
-		*/
 
-		string loggedUser_data;
-		
-		public string LoggedUser_data {
+		 bool userLogged = false;
+
+		public bool UserLogged {
 			get {
-				return loggedUser_data;
+				return userLogged;
 			}
 			set {
-				loggedUser_data = value;
+				userLogged = value;
 			}
 		}
+
+
 		
-		public HttpRestController ()
+		private HttpRestController ()
 		{
 		}
 
@@ -58,18 +74,26 @@ namespace ZgenMobil
 
 			//select_service = serviceEmployee; 
 			
-			if(loggedUser_data == null)
+			if(userLogged == false)
 			{
 				Console.WriteLine("login case IS null");
-				loggedUser_data = login_data;
+				userLogged = true;
+				loggedUser = login_data;
+				//TODO: umstellen
+				//select_service = serviceOrgViews;
 				select_service = serviceEmployee;
+
+			}
+			else if(userLogged == true)
+			{
+				Console.WriteLine("userLogged ist true..." + loggedUser);
 			}
 			
-			else if(loggedUser_data != null)
-			{
-				Console.WriteLine("login case !null");
-				select_service = serviceEmployee;
-			}
+			//else if(loggedUser_data != null)
+			//{
+			//	Console.WriteLine("login case !null");
+			//	select_service = serviceEmployee;
+			//}
 			
 			string whole_url = basic_url + select_service;
 
@@ -77,7 +101,7 @@ namespace ZgenMobil
 			try
 			{
 				var request = HttpWebRequest.Create(whole_url);
-				request.Headers["Authorization"] = login_data;
+				request.Headers["Authorization"] = loggedUser;
 				request.ContentType = "application/atom+xml";
 				request.Method = "GET";
 				
@@ -128,6 +152,11 @@ namespace ZgenMobil
 					XmlNodeList perskList 	= doc.GetElementsByTagName("d:PERSK");
 					XmlNodeList btrtxList 	= doc.GetElementsByTagName("d:BTRTX");
 
+					Console.WriteLine("BASEURI " + doc.BaseURI.ToString());
+					Console.WriteLine("ChildNodes " + doc.ChildNodes);
+					Console.WriteLine("FirstChild " + doc.FirstChild.ToString());
+
+
 
 
 				
@@ -169,6 +198,7 @@ namespace ZgenMobil
 			catch (WebException ex)
 			{
 				Console.WriteLine("Exception:  {0}",ex.Status);
+
 				return "false";
 			}
 		}

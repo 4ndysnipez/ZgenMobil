@@ -18,6 +18,7 @@ namespace ZgenMobil
 		PickerViewController model;
 
 
+
 		
 		public ViewMitarbeiterselektion () : base ("ViewMitarbeiterselektion", null)
 		{
@@ -115,12 +116,9 @@ namespace ZgenMobil
 			{
 				datumPicker.Hidden = true;
 				toolbarDate.Hidden = true;
+
 			}
 
-
-
-
-						
 			pickerView.Model = model;
 			tableView.Hidden = true;
 			pickerView.Hidden = false;
@@ -148,10 +146,13 @@ namespace ZgenMobil
 			sb.Replace("-",".");
 
 
-			string dd="";
-			string mm="";
-			string yy="";
+			string yy = sb[0].ToString() + sb[1].ToString() + sb[2].ToString() + sb[3].ToString();
+			string mm = sb[5].ToString() + sb[6].ToString();
+			string dd = sb[8].ToString() + sb[9].ToString();
 			string pk = ".";
+
+
+		/*
 
 			for(int i=0; i<4;i++)
 			{
@@ -167,7 +168,7 @@ namespace ZgenMobil
 			{
 				dd +=(sb[i]);
 			}
-
+		*/
 			Console.WriteLine( "hier " +  datumPicker.Date.ToString());
 
 

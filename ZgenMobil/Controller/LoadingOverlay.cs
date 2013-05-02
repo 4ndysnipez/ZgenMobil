@@ -9,7 +9,23 @@ namespace ZgenMobil
 		UIActivityIndicatorView activitySpinner;
 		UILabel loadingLabel;
 		
-		public LoadingOverlay (RectangleF frame) : base (frame)
+		private static LoadingOverlay instance;
+		
+		public static LoadingOverlay Instance {
+			get {
+				if(instance == null)
+				{
+					instance = new LoadingOverlay(UIScreen.MainScreen.Bounds);
+				}
+				
+				return instance;
+			}
+			set {
+				instance = value;
+			}
+		}
+		
+		private LoadingOverlay (RectangleF frame) : base (frame)
 		{
 			// configurable bits
 			BackgroundColor = UIColor.Black;

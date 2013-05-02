@@ -5,6 +5,7 @@ using MonoTouch.UIKit;
 
 
 
+
 namespace ZgenMobil
 {
 	public partial class ViewLogin : UIViewController
@@ -12,7 +13,6 @@ namespace ZgenMobil
 
 
 		ViewMitarbeiterselektion viewMitarbeiterselektion;
-		LoadingOverlay loadingOverlay;
 		HttpRestController httpRestController;
 
 		
@@ -53,13 +53,10 @@ namespace ZgenMobil
 			
 		}
 
-
 		partial void actionBtnAnmelden (NSObject sender)		
 		{
 
-			loadingOverlay = new LoadingOverlay(UIScreen.MainScreen.Bounds);
-			Console.WriteLine("overlay created");
-			View.Add(loadingOverlay);
+			View.Add(LoadingOverlay.Instance);
 			Console.WriteLine("overlay added");
 
 
@@ -78,7 +75,7 @@ namespace ZgenMobil
 
 			if(respRest != "OK")
 			{
-				loadingOverlay.Hide();
+				LoadingOverlay.Instance.Hide();
 				new UIAlertView("Login Error", "User unauthorised",null,"OK",null).Show();
 
 			}
@@ -93,7 +90,7 @@ namespace ZgenMobil
 				{
 					Console.WriteLine("mitarb ist schon da");
 				}
-				loadingOverlay.Hide();
+				LoadingOverlay.Instance.Hide();
 				this.NavigationController.PushViewController(viewMitarbeiterselektion, true);
 			}
 			

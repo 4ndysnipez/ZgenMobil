@@ -5,6 +5,7 @@ using System.Xml;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Text;
+using System.IO;
 
 namespace ZgenMobil
 {
@@ -94,6 +95,7 @@ namespace ZgenMobil
 			List <string> listPernr = new List<string>();
 			List <string> listTeilbereich = new List<string>();
 			List <string> listOrg = new List<string>();
+			List <NSData> listImg = new List<NSData>();
 
 			
 			foreach (XmlNode element in elements)
@@ -122,6 +124,22 @@ namespace ZgenMobil
 					listOrg.Add(org.InnerText.ToString());
 				}
 
+				XmlNodeList propImg = element.SelectSingleNode("./atom:content/m:properties/d:PORTRAIT_IMG" , xmlManager).ChildNodes;
+				foreach(XmlNode img in propImg)
+				{
+					string imgBase64 = img.Value.Replace("data:image/jpeg;base64,","");
+
+					while((imgBase64.Length % 4) != 0)
+					{
+						imgBase64 += "=";
+						Console.WriteLine("imgBase64 nicht mod 4!");
+
+					}
+					byte[] imgBytes = Convert.FromBase64String(imgBase64);
+					NSData data = NSData.FromArray(imgBytes);
+					listImg.Add(data);
+				}
+
 			}
 			
 			//TagName("d:PERNR");
@@ -131,7 +149,7 @@ namespace ZgenMobil
 			//TagName("d:BTRTX");
 
 
-			tableViewSource = new TableViewSource(this , listName, listPernr, listTeilbereich, listOrg);
+			tableViewSource = new TableViewSource(this , listName, listPernr, listTeilbereich, listOrg, listImg);
 			tableView.Source = tableViewSource;
 
 		}
@@ -198,7 +216,7 @@ namespace ZgenMobil
 			datumPicker.Hidden = true;
 		}
 
-		public void mitarbeiterSelected(string name, string pernr , string teilbereich, string org)
+		public void mitarbeiterSelected(string name, string pernr , string teilbereich, string org, NSData img)
 		{
 			if(viewZeugnisart == null){
 
@@ -206,7 +224,7 @@ namespace ZgenMobil
 			}
 
 			this.NavigationController.PushViewController(viewZeugnisart, true);
-			viewZeugnisart.setLabels(name, pernr, teilbereich, org);
+			viewZeugnisart.setLabels(name, pernr, teilbereich, org, img);
 		}
 		
 	}

@@ -73,14 +73,14 @@ namespace ZgenMobil
 			string respRest = httpRestController.buildRestUrl("SCD/ZGEN_MI_ORG_VIEWS/ORGVIEWS", logindata);
 			httpRestController.buildRestUrl(respRest, logindata);
 
-			if(respRest != "OK")
+			if(respRest == "fehler")
 			{
 				LoadingOverlay.Instance.Hide();
 				new UIAlertView("Login Error", "User unauthorised",null,"OK",null).Show();
 
 			}
 			
-			else if(respRest == "OK")
+			else if(respRest != "fehler")
 			{
 				if(viewMitarbeiterselektion == null){
 					Console.WriteLine("mitarb ist null");
@@ -90,8 +90,10 @@ namespace ZgenMobil
 				{
 					Console.WriteLine("mitarb ist schon da");
 				}
+
 				LoadingOverlay.Instance.Hide();
 				this.NavigationController.PushViewController(viewMitarbeiterselektion, true);
+				viewMitarbeiterselektion.buildTable(respRest);
 			}
 			
 		}

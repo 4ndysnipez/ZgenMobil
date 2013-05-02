@@ -29,9 +29,13 @@ namespace ZgenMobil
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
-		public void setLabelName(string name)
+		public void setLabels(string name, string pernr, string teilbereich, string org)
 		{
 			labelName.Text = name;
+			labelPernr.Text = pernr;
+			labelTeilbereich.Text = teilbereich;
+			labelOrgEinheit.Text = org;
+
 			imgView.Image  = UIImage.FromFile("img/scdsoftLogo.png");
 		}
 

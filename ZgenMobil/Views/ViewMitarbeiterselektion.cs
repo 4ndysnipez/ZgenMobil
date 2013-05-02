@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
+using System.Xml;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Text;
@@ -11,7 +11,7 @@ namespace ZgenMobil
 	public partial class ViewMitarbeiterselektion : UIViewController
 	{
 		
-		ActionSheetDatePicker datePicker;
+		//ActionSheetDatePicker datePicker;
 		ViewZeugnisart viewZeugnisart;
 		TableViewSource tableViewSource;
 		string selektion;
@@ -59,28 +59,82 @@ namespace ZgenMobil
 				labelDate.Text += datum[i];
 			}
 
-
-
-
-
-			//labelDate.Text = datum.ToString();
-
-
-
 			toolbarSelektion.Hidden = true;
 
+
+			//create pickerView für Mitarbeiterselektion
 			string[] items = new string[3]{"Alle Mitarbeiter" , "Direkt unterstellte" , "Alle Org-Einheiten"};
-
 			model = new PickerViewController(items);
-
-			tableViewSource = new TableViewSource(this , "Franz", "Dieter" , "Otmar");
-			tableView.Source = tableViewSource;
-
 			labelSelektion.Text = items[0];
-						
+
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
+
+		//build table
+		public void buildTable(string respXml)
+		{
+
+			XmlDocument xmlDoc = new XmlDocument();
+			xmlDoc.LoadXml(respXml);
+
+			//xmlDoc durch XmlNamespaceManager parsen
+			XmlNamespaceManager xmlManager = new XmlNamespaceManager(xmlDoc.NameTable);
+			xmlManager.AddNamespace("atom" 	, "http://www.w3.org/2005/Atom");
+			xmlManager.AddNamespace("d" 	, "http://schemas.microsoft.com/ado/2007/08/dataservices");
+			xmlManager.AddNamespace("m"		, "http://schemas.microsoft.com/ado/2007/08/dataservices/metadata");
+			xmlManager.AddNamespace("sap"	, "http://www.sap.com/Protocols/SAPData");
+			xmlManager.AddNamespace("base"	, "HTTP://SCDECC.SCDINTERN.DE:8000/sap/opu/sdata/SCD/ZGEN_MI_EMPLOYEES/");
+			
+			
+			XmlNodeList elements = xmlDoc.DocumentElement.SelectNodes("./atom:entry" , xmlManager);
+			Console.WriteLine("test count: " + elements.Count.ToString());
+
+			List <string> listName = new List<string>();
+			List <string> listPernr = new List<string>();
+			List <string> listTeilbereich = new List<string>();
+			List <string> listOrg = new List<string>();
+
+			
+			foreach (XmlNode element in elements)
+			{
+				XmlNodeList propName = element.SelectSingleNode("./atom:content/m:properties/d:ENAME" , xmlManager).ChildNodes;
+				foreach(XmlNode name in propName)
+				{
+					listName.Add(name.InnerText.ToString());
+				}
+
+				XmlNodeList propPernr = element.SelectSingleNode("./atom:content/m:properties/d:PERNR" , xmlManager).ChildNodes;
+				foreach(XmlNode pernr in propPernr)
+				{
+					listPernr.Add(pernr.InnerText.ToString());
+				}
+
+				XmlNodeList propTeilbereich = element.SelectSingleNode("./atom:content/m:properties/d:BTRTX" , xmlManager).ChildNodes;
+				foreach(XmlNode teilbereich in propTeilbereich)
+				{
+					listTeilbereich.Add(teilbereich.InnerText.ToString());
+				}
+
+				XmlNodeList propOrg = element.SelectSingleNode("./atom:content/m:properties/d:ORGTX" , xmlManager).ChildNodes;
+				foreach(XmlNode org in propOrg)
+				{
+					listOrg.Add(org.InnerText.ToString());
+				}
+
+			}
+			
+			//TagName("d:PERNR");
+			//TagName("d:ENAME");
+			//TagName("d:ORGTX");
+			//TagName("d:PERSK");
+			//TagName("d:BTRTX");
+
+
+			tableViewSource = new TableViewSource(this , listName, listPernr, listTeilbereich, listOrg);
+			tableView.Source = tableViewSource;
+
+		}
 
 		partial void actionBtnDate (NSObject sender)
 		{
@@ -92,22 +146,6 @@ namespace ZgenMobil
 
 			datumPicker.Hidden = false;
 			toolbarDate.Hidden = false;
-
-		/*
-			//Console.WriteLine(this.View.Frame.ToString());
-			
-			datePicker = new ActionSheetDatePicker(this.View);
-			
-			datePicker.Title = "Datum wählen...";
-			datePicker.Picker.Mode = UIDatePickerMode.Date;
-			
-			datePicker.Picker.ValueChanged += (s, e) => {
-				
-				labelDate.Text = (s as UIDatePicker).Date.ToString();
-			};
-			
-			datePicker.Show();
-		*/
 		}
 
 		partial void actionBtnSelektion (NSObject sender)
@@ -150,37 +188,17 @@ namespace ZgenMobil
 			string mm = sb[5].ToString() + sb[6].ToString();
 			string dd = sb[8].ToString() + sb[9].ToString();
 			string pk = ".";
-
-
-		/*
-
-			for(int i=0; i<4;i++)
-			{
-				yy +=(sb[i]);
-			}
-
-			for(int i=5; i<7;i++)
-			{
-				mm +=(sb[i]);
-			}
-
-			for(int i=8; i<10;i++)
-			{
-				dd +=(sb[i]);
-			}
-		*/
+					
 			Console.WriteLine( "hier " +  datumPicker.Date.ToString());
 
 
 			labelDate.Text = dd+pk+mm+pk+yy;//datumPicker.Date.ToString();
 
-
-
 			toolbarDate.Hidden = true;
 			datumPicker.Hidden = true;
 		}
 
-		public void mitarbeiterSelected(string name)
+		public void mitarbeiterSelected(string name, string pernr , string teilbereich, string org)
 		{
 			if(viewZeugnisart == null){
 
@@ -188,7 +206,7 @@ namespace ZgenMobil
 			}
 
 			this.NavigationController.PushViewController(viewZeugnisart, true);
-			viewZeugnisart.setLabelName(name);
+			viewZeugnisart.setLabels(name, pernr, teilbereich, org);
 		}
 		
 	}

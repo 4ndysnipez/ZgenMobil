@@ -16,6 +16,15 @@ namespace ZgenMobil
 
 		[Outlet]
 		MonoTouch.UIKit.UIImageView imgView { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel labelPernr { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel labelTeilbereich { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel labelOrgEinheit { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -27,6 +36,21 @@ namespace ZgenMobil
 			if (imgView != null) {
 				imgView.Dispose ();
 				imgView = null;
+			}
+
+			if (labelPernr != null) {
+				labelPernr.Dispose ();
+				labelPernr = null;
+			}
+
+			if (labelTeilbereich != null) {
+				labelTeilbereich.Dispose ();
+				labelTeilbereich = null;
+			}
+
+			if (labelOrgEinheit != null) {
+				labelOrgEinheit.Dispose ();
+				labelOrgEinheit = null;
 			}
 		}
 	}

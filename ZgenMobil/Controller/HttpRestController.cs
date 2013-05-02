@@ -1,9 +1,9 @@
 using System;
 using System.Net;
-using System.Xml;
+//using System.Xml;
 using System.Linq;
 using System.IO;
-using System.Collections.Generic;
+//using System.Collections.Generic;
 //using OData;
 
 
@@ -95,6 +95,7 @@ namespace ZgenMobil
 
 			string whole_url = basic_url + select_service;
 
+			string readerText = "";
 
 			try
 			{
@@ -112,58 +113,25 @@ namespace ZgenMobil
 
 				if(resp.StatusCode == HttpStatusCode.OK)
 				{
-					StreamReader reader = new StreamReader(resp.GetResponseStream());
+					StreamReader sr = new StreamReader(resp.GetResponseStream());
 
-					string readerText = reader.ReadToEnd();
-					
-					XmlDocument xmlDoc = new XmlDocument();
-					xmlDoc.LoadXml(readerText);
+					string srText = sr.ReadToEnd();
 
 
 					resp.Close();
 
 
-					//xmlDoc durch XmlNamespaceManager parsen
-
-					XmlNamespaceManager xm = new XmlNamespaceManager(xmlDoc.NameTable);
-
-					xm.AddNamespace("atom" 	, "http://www.w3.org/2005/Atom");
-					xm.AddNamespace("d" 	, "http://schemas.microsoft.com/ado/2007/08/dataservices");
-					xm.AddNamespace("m"		, "http://schemas.microsoft.com/ado/2007/08/dataservices/metadata");
-					xm.AddNamespace("sap"	, "http://www.sap.com/Protocols/SAPData");
-					xm.AddNamespace("base"	, "HTTP://SCDECC.SCDINTERN.DE:8000/sap/opu/sdata/SCD/ZGEN_MI_EMPLOYEES/");
-
-
-					XmlNodeList elements = xmlDoc.DocumentElement.SelectNodes("./atom:entry" , xm);
-					Console.WriteLine("test count: " + elements.Count.ToString());
-
-					foreach (XmlNode element in elements)
-					{
-						XmlNodeList properties = element.SelectSingleNode("./atom:content/m:properties/d:PERNR" , xm).ChildNodes;
-
-						foreach(XmlNode property in properties)
-						{
-							Console.WriteLine(property.InnerText.ToString() + " neee oder?!?!?" );
-						}
-
-					}
-
-					//TagName("d:PERNR");
-					//TagName("d:ENAME");
-					//TagName("d:ORGTX");
-					//TagName("d:PERSK");
-					//TagName("d:BTRTX");
-
+					readerText = srText;
 				} 
-				userLogged = true;
-				return "OK";
+				return readerText;
+
 			} 
 
 			catch (WebException ex)
 			{
 				Console.WriteLine("Exception:  {0}", ex.Status);
 
-				return "false";
+				return "fehler";
 			}
 		}
 		

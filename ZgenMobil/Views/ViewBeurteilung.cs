@@ -7,14 +7,14 @@ using MonoTouch.UIKit;
 
 namespace ZgenMobil
 {
-	public partial class ViewTaetigkeitsbeschreibung : UIViewController
+	public partial class ViewBeurteilung : UIViewController
 	{
 
-		ViewBeurteilung viewBeurteilung;
+		ViewEntwurf viewEntwurf;
 
-		public ViewTaetigkeitsbeschreibung () : base ("ViewTaetigkeitsbeschreibung", null)
+		public ViewBeurteilung () : base ("ViewBeurteilung", null)
 		{
-			this.Title = "Tätigkeitsbeschreibung";
+			this.Title = "Beurteilung";
 		}
 		
 		public override void DidReceiveMemoryWarning ()
@@ -30,22 +30,21 @@ namespace ZgenMobil
 			base.ViewDidLoad ();
 
 			propScrollView.Frame = new RectangleF(0,0,768,879);
-
+			
 			propScrollView.ContentSize = new SizeF(768,880);
-
+			
 			this.View.AddSubview(propScrollView);
 
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
-		partial void actionBtnWeiter (NSObject sender)
+		partial void actionBtnErstellen (NSObject sender)
 		{
-			if(viewBeurteilung == null)
+			if(viewEntwurf == null)
 			{
-				viewBeurteilung = new ViewBeurteilung();
+				viewEntwurf = new ViewEntwurf();
 			}
-
-			this.NavigationController.PushViewController(viewBeurteilung, true);
+			this.NavigationController.PushViewController(viewEntwurf, true);
 		}
 
 	}

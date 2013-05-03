@@ -8,14 +8,14 @@ using MonoTouch.Foundation;
 
 namespace ZgenMobil
 {
-	[Register ("ViewTaetigkeitsbeschreibung")]
-	partial class ViewTaetigkeitsbeschreibung
+	[Register ("ViewBeurteilung")]
+	partial class ViewBeurteilung
 	{
 		[Outlet]
 		MonoTouch.UIKit.UIScrollView propScrollView { get; set; }
 
-		[Action ("actionBtnWeiter:")]
-		partial void actionBtnWeiter (MonoTouch.Foundation.NSObject sender);
+		[Action ("actionBtnErstellen:")]
+		partial void actionBtnErstellen (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

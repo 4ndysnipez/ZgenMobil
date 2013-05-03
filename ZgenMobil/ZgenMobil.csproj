@@ -114,6 +114,14 @@
     <Compile Include="Views\ViewTaetigkeitsbeschreibung.designer.cs">
       <DependentUpon>ViewTaetigkeitsbeschreibung.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ViewBeurteilung.cs" />
+    <Compile Include="Views\ViewBeurteilung.designer.cs">
+      <DependentUpon>ViewBeurteilung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewEntwurf.cs" />
+    <Compile Include="Views\ViewEntwurf.designer.cs">
+      <DependentUpon>ViewEntwurf.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -121,6 +129,8 @@
     <InterfaceDefinition Include="Views\ViewMitarbeiterselektion.xib" />
     <InterfaceDefinition Include="Views\ViewZeugnisart.xib" />
     <InterfaceDefinition Include="Views\ViewTaetigkeitsbeschreibung.xib" />
+    <InterfaceDefinition Include="Views\ViewBeurteilung.xib" />
+    <InterfaceDefinition Include="Views\ViewEntwurf.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\img\scdsoftLogo.png" />

@@ -64,7 +64,7 @@ namespace ZgenMobil
 
 
 			//create pickerView für Mitarbeiterselektion
-			string[] items = new string[3]{"Alle Mitarbeiter" , "Direkt unterstellte" , "Alle Org-Einheiten"};
+			string[] items = new string[3]{"Alle Mitarbeiter" , "Direkt unterstellte Mitarbeiter" , "Alle Org-Einheiten"};
 			pickerMitarbeiterselektion = new PickerViewController(items);
 			labelSelektion.Text = items[0];
 
@@ -222,8 +222,9 @@ namespace ZgenMobil
 		{
 			if(viewZeugnisart == null){
 
-				viewZeugnisart =  new ViewZeugnisart();
+				viewZeugnisart =  ViewZeugnisart.Instance;
 			}
+
 
 			this.NavigationController.PushViewController(viewZeugnisart, true);
 			viewZeugnisart.setLabels(name, pernr, teilbereich, org, img);

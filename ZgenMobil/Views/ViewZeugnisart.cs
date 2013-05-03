@@ -9,13 +9,62 @@ namespace ZgenMobil
 {
 	public partial class ViewZeugnisart : UIViewController
 	{
+
+		private static ViewZeugnisart instance;
+		
+		public static ViewZeugnisart Instance {
+			get {
+				if(instance == null)
+				{
+					instance = new ViewZeugnisart();
+				}
+				
+				return instance;
+			}
+			set {
+				instance = value;
+			}
+		}
+
 		ViewTaetigkeitsbeschreibung viewTaetigkeitsbeschreibung;
 		PickerViewController pickerViewControllerArt;
 		PickerViewController pickerViewControllerGrund;
 
 		string selektionZArt;
 		string selektionZGrund;
+		string globname;
+		string globteil;
 
+
+
+		public ViewZeugnisart () : base ("ViewZeugnisart", null)
+		{
+			this.Title = "Zeugnisart wählen";
+		}
+
+		
+		public string Globname {
+			get {
+				return globname;
+			}
+			set {
+				globname = value;
+			}
+		}
+		
+		
+		
+		
+		public string Globteil {
+			get {
+				return globteil;
+			}
+			set {
+				globteil = value;
+			}
+		}
+		
+		
 		public string SelektionZGrund {
 			get {
 				return selektionZGrund;
@@ -24,7 +73,7 @@ namespace ZgenMobil
 				selektionZGrund = value;
 			}
 		}
-
+		
 		public string SelektionZArt {
 			get {
 				return selektionZArt;
@@ -35,12 +84,6 @@ namespace ZgenMobil
 		}	
 
 
-		public ViewZeugnisart () : base ("ViewZeugnisart", null)
-		{
-			this.Title = "Zeugnisart wählen";
-//			this.NavigationItem.RightBarButtonItem = new UIBarButtonItem(
-		}
-		
 		public override void DidReceiveMemoryWarning ()
 		{
 			// Releases the view if it doesn't have a superview.
@@ -59,6 +102,8 @@ namespace ZgenMobil
 		public void setLabels(string name, string pernr, string teilbereich, string org, NSData img)
 		{
 			labelName.Text = name;
+			globname = name;
+			globteil = teilbereich;
 			labelPernr.Text = pernr;
 			labelTeilbereich.Text = teilbereich;
 			labelOrgEinheit.Text = org;
@@ -71,7 +116,7 @@ namespace ZgenMobil
 			toolbarZGrund.Hidden = true;
 			pickerZGrund.Hidden = true;
 
-			string[] items = new string[5]{"Eins" , "Zwei" , "Drei" , "Vier" , "Fünf"};
+			string[] items = new string[3]{"Endzeugnis Gewerblich" , "Endzeugnis Tarifangestellte" , "Endzeugnis AT-Angestellte"};
 
 			pickerViewControllerArt = new PickerViewController(items);
 
@@ -92,7 +137,7 @@ namespace ZgenMobil
 			toolbarZArt.Hidden = true;
 			pickerZArt.Hidden = true;
 
-			string[] items = new string[5]{"sechs" , "sieben" , "acht" , "neun" , "zehn"};
+			string[] items = new string[4]{"Arbeitnehmerseitige Kündigung (ohne Begründung)" , "Beendigung durch Aufhebungsvertrag oder Vergleich" , "Betriebsbedingte arbeitgeberseitige Kündigung" , "Arbeitgeberseitige Kündigung (Sonstiges)"};
 			
 			pickerViewControllerGrund = new PickerViewController(items);
 			
@@ -113,8 +158,9 @@ namespace ZgenMobil
 		{
 			pickerZArt.Hidden = true;
 			toolbarZArt.Hidden = true;
-			zArtwaehlen.TitleLabel.Text = selektionZArt;
-			zArtwaehlen.TitleLabel.TextAlignment = UITextAlignment.Center;
+			labelZArt.Text = selektionZArt;
+			//zArtwaehlen.TitleLabel.Text = selektionZArt;
+			//zArtwaehlen.TitleLabel.TextAlignment = UITextAlignment.Center;
 		}
 
 
@@ -122,8 +168,9 @@ namespace ZgenMobil
 		{
 			pickerZGrund.Hidden = true;
 			toolbarZGrund.Hidden = true;
-			btnZGrundwaehlen.TitleLabel.Text = selektionZGrund;
-			btnZGrundwaehlen.TitleLabel.TextAlignment = UITextAlignment.Center;
+			labelZGrund.Text = selektionZGrund;
+			//btnZGrundwaehlen.TitleLabel.Text = selektionZGrund;
+			//btnZGrundwaehlen.TitleLabel.TextAlignment = UITextAlignment.Center;
 		}
 
 		partial void actionBtnWeiter (NSObject sender)

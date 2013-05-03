@@ -12,6 +12,12 @@ namespace ZgenMobil
 	partial class ViewZeugnisart
 	{
 		[Outlet]
+		MonoTouch.UIKit.UILabel labelZArt { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel labelZGrund { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UILabel labelName { get; set; }
 
 		[Outlet]
@@ -44,9 +50,6 @@ namespace ZgenMobil
 		[Outlet]
 		MonoTouch.UIKit.UIButton btnZGrundwaehlen { get; set; }
 
-		[Action ("actionBtnWeiter:")]
-		partial void actionBtnWeiter (MonoTouch.Foundation.NSObject sender);
-
 		[Action ("actionBtnZArtwaehlen:")]
 		partial void actionBtnZArtwaehlen (MonoTouch.Foundation.NSObject sender);
 
@@ -58,9 +61,22 @@ namespace ZgenMobil
 
 		[Action ("actionPickerDoneGrund:")]
 		partial void actionPickerDoneGrund (MonoTouch.Foundation.NSObject sender);
+
+		[Action ("actionBtnWeiter:")]
+		partial void actionBtnWeiter (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (labelZArt != null) {
+				labelZArt.Dispose ();
+				labelZArt = null;
+			}
+
+			if (labelZGrund != null) {
+				labelZGrund.Dispose ();
+				labelZGrund = null;
+			}
+
 			if (labelName != null) {
 				labelName.Dispose ();
 				labelName = null;

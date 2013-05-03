@@ -18,6 +18,8 @@ namespace ZgenMobil
 		string[] arbeitserfolg;
 		string[] zusammenfassung;
 
+		string person = ViewZeugnisart.Instance.Globname;
+
 		public ViewBeurteilung () : base ("ViewBeurteilung", null)
 		{
 			this.Title = "Beurteilung";
@@ -68,8 +70,6 @@ namespace ZgenMobil
 
 		public string buildArbeitsbereitschaft(int item)
 		{
-			string person = "Hanz Dieter";
-
 			arbeitsbereitschaft = new string[5];
 
 			arbeitsbereitschaft[0] = 	person + " zeichnete sich durch eine sehr hohe Arbeitsmoral aus. " +
@@ -86,8 +86,6 @@ namespace ZgenMobil
 
 		public string buildArbeitsbefaehigung(int item)
 		{
-			string person = "Hanz Dieter";
-
 			arbeitsbefaehigung = new string[5];
 			arbeitsbefaehigung[0] = 	person + " war eine sehr belastbare, besonnene und fachlich tüchtige Arbeitskraft. " +
 										person + " ist ein absoluter Könner und hat laufend schwierige und umfangreiche Aufgaben übernommen.";
@@ -106,8 +104,6 @@ namespace ZgenMobil
 
 		public string buildWissen(int item)
 		{
-			string person = "Hanz Dieter";
-			
 			wissen = new string[5];
 
 			wissen[0] = 	person + " war eine aufgeschlossene und sehr visierte Arbeitskraft, die aufgrund ihrer außergewöhnlichen " +
@@ -127,8 +123,6 @@ namespace ZgenMobil
 
 		public string buildArbeitsweise(int item)
 		{
-			string person = "Hanz Dieter";
-
 			arbeitsweise = new string[5];
 
 			arbeitsweise[0] =	person + " arbeitete stehts zielstrebig, gründlich und zügig. " +
@@ -145,8 +139,6 @@ namespace ZgenMobil
 
 		public string buildArbeitserfolg(int item)
 		{
-			string person = "Hanz Dieter";
-
 			arbeitserfolg = new string[5];
 			arbeitserfolg[0] =		"Die Arbeitsergebnisse waren, auch bei wechselnden Anforderungen und in sehr schwiegrigen Fällen, stets von sehr guter Qualität.";
 			arbeitserfolg[1] =		"Die Werkstücke von " + person + " waren stets von guter Qualität.";
@@ -159,8 +151,6 @@ namespace ZgenMobil
 
 		public string buildZusammenfassung(int item)
 		{
-			string person = "Hanz Dieter";
-
 			zusammenfassung = new string[5];
 
 			zusammenfassung[0] = 	"Die übertragenen Arbeiten erledigte " + person + " stets zu unserer vollsten Zufriedenheit."; 

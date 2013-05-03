@@ -84,7 +84,7 @@ namespace ZgenMobil
 			{
 				if(viewMitarbeiterselektion == null){
 					Console.WriteLine("mitarb ist null");
-					viewMitarbeiterselektion =  new ViewMitarbeiterselektion();
+					viewMitarbeiterselektion =  ViewMitarbeiterselektion.Instance;
 				}
 				else if(viewMitarbeiterselektion != null)
 				{

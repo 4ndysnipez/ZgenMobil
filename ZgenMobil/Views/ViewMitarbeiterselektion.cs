@@ -19,6 +19,23 @@ namespace ZgenMobil
 		PickerViewController pickerMitarbeiterselektion;
 
 
+		private static ViewMitarbeiterselektion instance;
+		
+		public static ViewMitarbeiterselektion Instance {
+			get {
+				if(instance == null)
+				{
+					instance = new ViewMitarbeiterselektion();
+				}
+				
+				return instance;
+			}
+			set {
+				instance = value;
+			}
+		}
+
+
 
 		
 		public ViewMitarbeiterselektion () : base ("ViewMitarbeiterselektion", null)

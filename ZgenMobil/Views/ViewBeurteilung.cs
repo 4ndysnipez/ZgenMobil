@@ -18,7 +18,7 @@ namespace ZgenMobil
 		string[] arbeitserfolg;
 		string[] zusammenfassung;
 
-		string person = ViewZeugnisart.Instance.Globname;
+
 
 		public ViewBeurteilung () : base ("ViewBeurteilung", null)
 		{
@@ -53,23 +53,59 @@ namespace ZgenMobil
 				viewEntwurf = new ViewEntwurf();
 			}
 
+			string check = checkSegments();
 
-			string selArbBereitschaft = buildArbeitsbereitschaft(segmentArbBereitschaft.SelectedSegment);
-			string selArbBefaehigung = buildArbeitsbefaehigung(segmentArbBefaehigung.SelectedSegment);
-			string selWissen = buildWissen(segmentWissen.SelectedSegment);
-			string selArbWeise = buildArbeitsweise(segmentArbWeise.SelectedSegment);
-			string selArbErfolg = buildArbeitserfolg(segmentArbErfolg.SelectedSegment);
-			string selZusammenfassung = buildZusammenfassung(segmentZusammenfassung.SelectedSegment);
+			if(check != "OK")
+			{
+				new UIAlertView("Fehler", "Bitte alle Noten ausfüllen",null,"OK",null).Show();
+			}
+			else{
+				string selArbBereitschaft = buildArbeitsbereitschaft(segmentArbBereitschaft.SelectedSegment);
+				string selArbBefaehigung = buildArbeitsbefaehigung(segmentArbBefaehigung.SelectedSegment);
+				string selWissen = buildWissen(segmentWissen.SelectedSegment);
+				string selArbWeise = buildArbeitsweise(segmentArbWeise.SelectedSegment);
+				string selArbErfolg = buildArbeitserfolg(segmentArbErfolg.SelectedSegment);
+				string selZusammenfassung = buildZusammenfassung(segmentZusammenfassung.SelectedSegment);
+				
+				this.NavigationController.PushViewController(viewEntwurf, true);
+				viewEntwurf.buildTextView(selArbBereitschaft,selArbBefaehigung,selWissen,selArbWeise,selArbErfolg,selZusammenfassung);
+			}
 
-			this.NavigationController.PushViewController(viewEntwurf, true);
-			viewEntwurf.buildTextView(selArbBereitschaft,selArbBefaehigung,selWissen,selArbWeise,selArbErfolg,selZusammenfassung);
+		}
 
+		public string checkSegments()
+		{
+			if(segmentArbBereitschaft.SelectedSegment < 0)
+			{
+				return "fehler";
+			}
+			else if(segmentArbBefaehigung.SelectedSegment < 0)
+			{
+				return "fehler";
+			}
+			else if(segmentWissen.SelectedSegment < 0)
+			{
+				return "fehler";
+			}
+			else if(segmentArbWeise.SelectedSegment < 0)
+			{
+				return "fehler";
+			}
+			else if(segmentArbErfolg.SelectedSegment < 0)
+			{
+				return "fehler";
+			}
+			else if(segmentZusammenfassung.SelectedSegment < 0)
+			{
+				return "fehler";
+			}
 
-
+			else{return "OK"; }
 		}
 
 		public string buildArbeitsbereitschaft(int item)
 		{
+			string person = ViewZeugnisart.Instance.Globname;
 			arbeitsbereitschaft = new string[5];
 
 			arbeitsbereitschaft[0] = 	person + " zeichnete sich durch eine sehr hohe Arbeitsmoral aus. " +
@@ -86,6 +122,7 @@ namespace ZgenMobil
 
 		public string buildArbeitsbefaehigung(int item)
 		{
+			string person = ViewZeugnisart.Instance.Globname;
 			arbeitsbefaehigung = new string[5];
 			arbeitsbefaehigung[0] = 	person + " war eine sehr belastbare, besonnene und fachlich tüchtige Arbeitskraft. " +
 										person + " ist ein absoluter Könner und hat laufend schwierige und umfangreiche Aufgaben übernommen.";
@@ -104,6 +141,7 @@ namespace ZgenMobil
 
 		public string buildWissen(int item)
 		{
+			string person = ViewZeugnisart.Instance.Globname;
 			wissen = new string[5];
 
 			wissen[0] = 	person + " war eine aufgeschlossene und sehr visierte Arbeitskraft, die aufgrund ihrer außergewöhnlichen " +
@@ -123,6 +161,7 @@ namespace ZgenMobil
 
 		public string buildArbeitsweise(int item)
 		{
+			string person = ViewZeugnisart.Instance.Globname;
 			arbeitsweise = new string[5];
 
 			arbeitsweise[0] =	person + " arbeitete stehts zielstrebig, gründlich und zügig. " +
@@ -139,6 +178,7 @@ namespace ZgenMobil
 
 		public string buildArbeitserfolg(int item)
 		{
+			string person = ViewZeugnisart.Instance.Globname;
 			arbeitserfolg = new string[5];
 			arbeitserfolg[0] =		"Die Arbeitsergebnisse waren, auch bei wechselnden Anforderungen und in sehr schwiegrigen Fällen, stets von sehr guter Qualität.";
 			arbeitserfolg[1] =		"Die Werkstücke von " + person + " waren stets von guter Qualität.";
@@ -151,6 +191,7 @@ namespace ZgenMobil
 
 		public string buildZusammenfassung(int item)
 		{
+			string person = ViewZeugnisart.Instance.Globname;
 			zusammenfassung = new string[5];
 
 			zusammenfassung[0] = 	"Die übertragenen Arbeiten erledigte " + person + " stets zu unserer vollsten Zufriedenheit."; 

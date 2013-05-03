@@ -8,6 +8,8 @@ namespace ZgenMobil
 {
 	public partial class ViewEntwurf : UIViewController
 	{
+		ViewMitarbeiterselektion viewMitarbeiterselektion;
+
 		public ViewEntwurf () : base ("ViewEntwurf", null)
 		{
 			this.Title = "Zeugnisentwurf";
@@ -52,7 +54,7 @@ namespace ZgenMobil
 					;
 
 			string schluss =
-				"Das Ausscheiden von " + person + "erfolgt zum " + stichtag + " betriebsbedingt unter Einhaltung der Sozialauswahl.\n\n"+
+				"Das Ausscheiden von " + person + " erfolgt zum " + stichtag + " betriebsbedingt unter Einhaltung der Sozialauswahl.\n\n"+
 				"Den Weggang von " + person + " bedauern wir sehr. Wir wünschen " + person + " im weiteren Berufs- und Lebensweg alles Gute und weiterhin viel Erfolg."
 				;
 
@@ -69,6 +71,13 @@ namespace ZgenMobil
 			textView.Text += zusammen+ nz+"\n";
 			textView.Text += schluss;
 		}
+		partial void actionBtnSenden (NSObject sender)
+		{
+			new UIAlertView("Senden Erfolgreich", "Zeugnis wurde erfolgreich versendet",null,"OK",null).Show();
+			viewMitarbeiterselektion = ViewMitarbeiterselektion.Instance;
+			this.NavigationController.PopToViewController(viewMitarbeiterselektion,true);
+		}
+
 	}
 }
 

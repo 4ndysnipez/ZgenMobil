@@ -30,6 +30,17 @@ namespace ZgenMobil
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
+		public void buildTextView(string bereitschaft, string befaehigung , string wissen, string weise, string erfolg, string zusammen)
+		{
+			textView.Text = "";
+			string nz = "\n\n";
+
+			textView.Text += bereitschaft + nz;
+			textView.Text += wissen + nz;
+			textView.Text += weise + nz;
+			textView.Text += erfolg + nz;
+			textView.Text += zusammen+ nz;
+		}
 	}
 }
 

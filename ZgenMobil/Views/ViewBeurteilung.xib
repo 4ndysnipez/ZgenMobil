@@ -916,6 +916,54 @@ aWthdGUsIFRpdGVsA</string>
 					<int key="connectionID">66</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">segmentArbBereitschaft</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="902613724"/>
+					</object>
+					<int key="connectionID">68</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">segmentArbBefaehigung</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="660601414"/>
+					</object>
+					<int key="connectionID">69</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">segmentWissen</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="560928187"/>
+					</object>
+					<int key="connectionID">70</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">segmentArbWeise</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="927196251"/>
+					</object>
+					<int key="connectionID">71</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">segmentArbErfolg</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="69417566"/>
+					</object>
+					<int key="connectionID">72</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">segmentZusammenfassung</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="1004741659"/>
+					</object>
+					<int key="connectionID">73</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">actionBtnErstellen:</string>
 						<reference key="source" ref="713342029"/>
@@ -1190,7 +1238,7 @@ aWthdGUsIFRpdGVsA</string>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">67</int>
+			<int key="maxID">73</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1208,17 +1256,45 @@ aWthdGUsIFRpdGVsA</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</object>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">propScrollView</string>
-						<string key="NS.object.0">UIScrollView</string>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">propScrollView</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="propScrollView">UIScrollView</string>
+						<string key="segmentArbBefaehigung">UISegmentedControl</string>
+						<string key="segmentArbBereitschaft">UISegmentedControl</string>
+						<string key="segmentArbErfolg">UISegmentedControl</string>
+						<string key="segmentArbWeise">UISegmentedControl</string>
+						<string key="segmentWissen">UISegmentedControl</string>
+						<string key="segmentZusammenfassung">UISegmentedControl</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="propScrollView">
 							<string key="name">propScrollView</string>
 							<string key="candidateClassName">UIScrollView</string>
 						</object>
-					</object>
+						<object class="IBToOneOutletInfo" key="segmentArbBefaehigung">
+							<string key="name">segmentArbBefaehigung</string>
+							<string key="candidateClassName">UISegmentedControl</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="segmentArbBereitschaft">
+							<string key="name">segmentArbBereitschaft</string>
+							<string key="candidateClassName">UISegmentedControl</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="segmentArbErfolg">
+							<string key="name">segmentArbErfolg</string>
+							<string key="candidateClassName">UISegmentedControl</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="segmentArbWeise">
+							<string key="name">segmentArbWeise</string>
+							<string key="candidateClassName">UISegmentedControl</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="segmentWissen">
+							<string key="name">segmentWissen</string>
+							<string key="candidateClassName">UISegmentedControl</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="segmentZusammenfassung">
+							<string key="name">segmentZusammenfassung</string>
+							<string key="candidateClassName">UISegmentedControl</string>
+						</object>
+					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/ViewBeurteilung.h</string>

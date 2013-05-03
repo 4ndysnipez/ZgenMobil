@@ -14,6 +14,24 @@ namespace ZgenMobil
 		[Outlet]
 		MonoTouch.UIKit.UIScrollView propScrollView { get; set; }
 
+		[Outlet]
+		MonoTouch.UIKit.UISegmentedControl segmentArbBereitschaft { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UISegmentedControl segmentArbBefaehigung { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UISegmentedControl segmentWissen { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UISegmentedControl segmentArbWeise { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UISegmentedControl segmentArbErfolg { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UISegmentedControl segmentZusammenfassung { get; set; }
+
 		[Action ("actionBtnErstellen:")]
 		partial void actionBtnErstellen (MonoTouch.Foundation.NSObject sender);
 		
@@ -22,6 +40,36 @@ namespace ZgenMobil
 			if (propScrollView != null) {
 				propScrollView.Dispose ();
 				propScrollView = null;
+			}
+
+			if (segmentArbBereitschaft != null) {
+				segmentArbBereitschaft.Dispose ();
+				segmentArbBereitschaft = null;
+			}
+
+			if (segmentArbBefaehigung != null) {
+				segmentArbBefaehigung.Dispose ();
+				segmentArbBefaehigung = null;
+			}
+
+			if (segmentWissen != null) {
+				segmentWissen.Dispose ();
+				segmentWissen = null;
+			}
+
+			if (segmentArbWeise != null) {
+				segmentArbWeise.Dispose ();
+				segmentArbWeise = null;
+			}
+
+			if (segmentArbErfolg != null) {
+				segmentArbErfolg.Dispose ();
+				segmentArbErfolg = null;
+			}
+
+			if (segmentZusammenfassung != null) {
+				segmentZusammenfassung.Dispose ();
+				segmentZusammenfassung = null;
 			}
 		}
 	}

@@ -35,11 +35,29 @@ namespace ZgenMobil
 		[Outlet]
 		MonoTouch.UIKit.UIToolbar toolbarZArt { get; set; }
 
-		[Action ("actionPickerZArt:")]
-		partial void actionPickerZArt (MonoTouch.Foundation.NSObject sender);
+		[Outlet]
+		MonoTouch.UIKit.UIToolbar toolbarZGrund { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIPickerView pickerZGrund { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton btnZGrundwaehlen { get; set; }
+
+		[Action ("actionBtnWeiter:")]
+		partial void actionBtnWeiter (MonoTouch.Foundation.NSObject sender);
 
 		[Action ("actionBtnZArtwaehlen:")]
 		partial void actionBtnZArtwaehlen (MonoTouch.Foundation.NSObject sender);
+
+		[Action ("actionBtnZGrundwaehlen:")]
+		partial void actionBtnZGrundwaehlen (MonoTouch.Foundation.NSObject sender);
+
+		[Action ("actionPickerZArt:")]
+		partial void actionPickerZArt (MonoTouch.Foundation.NSObject sender);
+
+		[Action ("actionPickerDoneGrund:")]
+		partial void actionPickerDoneGrund (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -81,6 +99,21 @@ namespace ZgenMobil
 			if (toolbarZArt != null) {
 				toolbarZArt.Dispose ();
 				toolbarZArt = null;
+			}
+
+			if (toolbarZGrund != null) {
+				toolbarZGrund.Dispose ();
+				toolbarZGrund = null;
+			}
+
+			if (pickerZGrund != null) {
+				pickerZGrund.Dispose ();
+				pickerZGrund = null;
+			}
+
+			if (btnZGrundwaehlen != null) {
+				btnZGrundwaehlen.Dispose ();
+				btnZGrundwaehlen = null;
 			}
 		}
 	}

@@ -9,9 +9,21 @@ namespace ZgenMobil
 {
 	public partial class ViewZeugnisart : UIViewController
 	{
-		PickerViewController pickerViewController;
-		string selektionZArt;
+		ViewTaetigkeitsbeschreibung viewTaetigkeitsbeschreibung;
+		PickerViewController pickerViewControllerArt;
+		PickerViewController pickerViewControllerGrund;
 
+		string selektionZArt;
+		string selektionZGrund;
+
+		public string SelektionZGrund {
+			get {
+				return selektionZGrund;
+			}
+			set {
+				selektionZGrund = value;
+			}
+		}
 
 		public string SelektionZArt {
 			get {
@@ -41,8 +53,6 @@ namespace ZgenMobil
 		{
 			base.ViewDidLoad ();
 
-
-
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
@@ -58,40 +68,73 @@ namespace ZgenMobil
 		partial void actionBtnZArtwaehlen (NSObject sender)
 		{
 
+			toolbarZGrund.Hidden = true;
+			pickerZGrund.Hidden = true;
+
 			string[] items = new string[5]{"Eins" , "Zwei" , "Drei" , "Vier" , "Fünf"};
 
-			pickerViewController = new PickerViewController(items);
+			pickerViewControllerArt = new PickerViewController(items);
 
-			pickerZArt.Model = pickerViewController;
+			pickerZArt.Model = pickerViewControllerArt;
 
 			pickerZArt.Hidden = false;
 			toolbarZArt.Hidden = false;
 
-
-
-
-			pickerViewController.selektionSelected += (object se, EventArgs ea) => 
+			pickerViewControllerArt.selektionSelected += (object se, EventArgs ea) => 
 			{
-				selektionZArt = pickerViewController.SelectedSelektion;
+				selektionZArt = pickerViewControllerArt.SelectedSelektion;
 			};
-
-
-
 		}
+
+		partial void actionBtnZGrundwaehlen (NSObject sender)
+		{
+
+			toolbarZArt.Hidden = true;
+			pickerZArt.Hidden = true;
+
+			string[] items = new string[5]{"sechs" , "sieben" , "acht" , "neun" , "zehn"};
+			
+			pickerViewControllerGrund = new PickerViewController(items);
+			
+			pickerZGrund.Model = pickerViewControllerGrund;
+			
+			pickerZGrund.Hidden = false;
+			toolbarZGrund.Hidden = false;
+
+			
+			pickerViewControllerGrund.selektionSelected += (object se, EventArgs ea) => 
+			{
+				selektionZGrund = pickerViewControllerGrund.SelectedSelektion;
+			};
+		}
+
 
 		partial void actionPickerZArt (NSObject sender)
 		{
 			pickerZArt.Hidden = true;
 			toolbarZArt.Hidden = true;
 			zArtwaehlen.TitleLabel.Text = selektionZArt;
-			//zArtwaehlen.TitleLabel.TextAlignment = UIControlContentHorizontalAlignment.Center;
 			zArtwaehlen.TitleLabel.TextAlignment = UITextAlignment.Center;
 		}
 
 
+		partial void actionPickerDoneGrund (NSObject sender)
+		{
+			pickerZGrund.Hidden = true;
+			toolbarZGrund.Hidden = true;
+			btnZGrundwaehlen.TitleLabel.Text = selektionZGrund;
+			btnZGrundwaehlen.TitleLabel.TextAlignment = UITextAlignment.Center;
+		}
 
+		partial void actionBtnWeiter (NSObject sender)
+		{
+			if(viewTaetigkeitsbeschreibung == null)
+			{
+				viewTaetigkeitsbeschreibung = new ViewTaetigkeitsbeschreibung();
+			}
 
-
+			this.NavigationController.PushViewController(viewTaetigkeitsbeschreibung, true);
+		}
 	}
 }
 

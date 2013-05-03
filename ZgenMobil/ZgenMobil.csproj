@@ -110,12 +110,17 @@
     <Compile Include="Views\ViewZeugnisart.designer.cs">
       <DependentUpon>ViewZeugnisart.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ViewTaetigkeitsbeschreibung.cs" />
+    <Compile Include="Views\ViewTaetigkeitsbeschreibung.designer.cs">
+      <DependentUpon>ViewTaetigkeitsbeschreibung.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <InterfaceDefinition Include="Views\ViewLogin.xib" />
     <InterfaceDefinition Include="Views\ViewMitarbeiterselektion.xib" />
     <InterfaceDefinition Include="Views\ViewZeugnisart.xib" />
+    <InterfaceDefinition Include="Views\ViewTaetigkeitsbeschreibung.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\img\scdsoftLogo.png" />

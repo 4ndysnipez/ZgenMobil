@@ -16,7 +16,7 @@ namespace ZgenMobil
 		ViewZeugnisart viewZeugnisart;
 		TableViewSource tableViewSource;
 		string selektion;
-		PickerViewController model;
+		PickerViewController pickerMitarbeiterselektion;
 
 
 
@@ -65,7 +65,7 @@ namespace ZgenMobil
 
 			//create pickerView für Mitarbeiterselektion
 			string[] items = new string[3]{"Alle Mitarbeiter" , "Direkt unterstellte" , "Alle Org-Einheiten"};
-			model = new PickerViewController(items);
+			pickerMitarbeiterselektion = new PickerViewController(items);
 			labelSelektion.Text = items[0];
 
 			// Perform any additional setup after loading the view, typically from a nib.
@@ -152,6 +152,8 @@ namespace ZgenMobil
 			tableViewSource = new TableViewSource(this , listName, listPernr, listTeilbereich, listOrg, listImg);
 			tableView.Source = tableViewSource;
 
+
+
 		}
 
 		partial void actionBtnDate (NSObject sender)
@@ -175,14 +177,14 @@ namespace ZgenMobil
 
 			}
 
-			pickerView.Model = model;
+			pickerView.Model = pickerMitarbeiterselektion;
 			tableView.Hidden = true;
 			pickerView.Hidden = false;
 			toolbarSelektion.Hidden = false;
 
-			model.selektionSelected += (object se, EventArgs ea) => 
+			pickerMitarbeiterselektion.selektionSelected += (object se, EventArgs ea) => 
 			{
-				selektion = model.SelectedSelektion;
+				selektion = pickerMitarbeiterselektion.SelectedSelektion;
 			};
 
 		}

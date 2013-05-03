@@ -25,6 +25,21 @@ namespace ZgenMobil
 
 		[Outlet]
 		MonoTouch.UIKit.UILabel labelOrgEinheit { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton zArtwaehlen { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIPickerView pickerZArt { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIToolbar toolbarZArt { get; set; }
+
+		[Action ("actionPickerZArt:")]
+		partial void actionPickerZArt (MonoTouch.Foundation.NSObject sender);
+
+		[Action ("actionBtnZArtwaehlen:")]
+		partial void actionBtnZArtwaehlen (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -51,6 +66,21 @@ namespace ZgenMobil
 			if (labelOrgEinheit != null) {
 				labelOrgEinheit.Dispose ();
 				labelOrgEinheit = null;
+			}
+
+			if (zArtwaehlen != null) {
+				zArtwaehlen.Dispose ();
+				zArtwaehlen = null;
+			}
+
+			if (pickerZArt != null) {
+				pickerZArt.Dispose ();
+				pickerZArt = null;
+			}
+
+			if (toolbarZArt != null) {
+				toolbarZArt.Dispose ();
+				toolbarZArt = null;
 			}
 		}
 	}

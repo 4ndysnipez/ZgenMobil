@@ -217,7 +217,7 @@
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<int key="IBUIBarStyle">2</int>
+						<int key="IBUIBarStyle">1</int>
 						<array class="NSMutableArray" key="IBUIItems">
 							<object class="IBUIBarButtonItem" id="53575289">
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -246,6 +246,7 @@
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="786294005"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
+						<string key="IBUIContentStretch">{{0, 1.3877787807814457e-17}, {1, 1}}</string>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<bool key="IBUIAlwaysBounceVertical">YES</bool>
 						<int key="IBUISeparatorStyle">1</int>
@@ -261,7 +262,6 @@
 						<string key="NSFrame">{{14, 144}, {734, 216}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -478,13 +478,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<reference ref="164184171"/>
 							<reference ref="685256715"/>
 							<reference ref="128446747"/>
-							<reference ref="306509094"/>
 							<reference ref="570150941"/>
 							<reference ref="578934113"/>
 							<reference ref="542571596"/>
 							<reference ref="153598163"/>
 							<reference ref="429298915"/>
 							<reference ref="496885021"/>
+							<reference ref="306509094"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

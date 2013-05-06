@@ -412,7 +412,7 @@
 						<reference key="IBUIFontDescription" ref="528136262"/>
 						<reference key="IBUIFont" ref="279276421"/>
 					</object>
-					<object class="IBUILabel" id="868557551">
+					<object class="IBUILabel" id="847722848">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{134, 228}, {616, 21}}</string>
@@ -432,7 +432,7 @@
 						<reference key="IBUIFont" ref="622404557"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
-					<object class="IBUILabel" id="313790930">
+					<object class="IBUILabel" id="798268412">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{138, 331}, {610, 21}}</string>
@@ -576,7 +576,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">labelZArt</string>
 						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="868557551"/>
+						<reference key="destination" ref="847722848"/>
 					</object>
 					<int key="connectionID">50</int>
 				</object>
@@ -584,7 +584,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">labelZGrund</string>
 						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="313790930"/>
+						<reference key="destination" ref="798268412"/>
 					</object>
 					<int key="connectionID">51</int>
 				</object>
@@ -671,8 +671,8 @@
 							<reference ref="323656993"/>
 							<reference ref="1010247390"/>
 							<reference ref="72668236"/>
-							<reference ref="313790930"/>
-							<reference ref="868557551"/>
+							<reference ref="798268412"/>
+							<reference ref="847722848"/>
 							<reference ref="71815026"/>
 						</array>
 						<reference key="parent" ref="0"/>
@@ -792,12 +792,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">48</int>
-						<reference key="object" ref="868557551"/>
+						<reference key="object" ref="847722848"/>
 						<reference key="parent" ref="766721923"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">49</int>
-						<reference key="object" ref="313790930"/>
+						<reference key="object" ref="798268412"/>
 						<reference key="parent" ref="766721923"/>
 					</object>
 				</array>
@@ -836,7 +836,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">51</int>
+			<int key="maxID">57</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

@@ -9,35 +9,19 @@ using System.IO;
 
 namespace ZgenMobil
 {
+	/// <summary>
+	/// Klasse der ViewMitarbeiterselektion
+	/// </summary>
 	public partial class ViewMitarbeiterselektion : UIViewController
 	{
-		
-		//ActionSheetDatePicker datePicker;
+		/// <summary>
+		/// Deklarationen
+		/// </summary>
 		ViewZeugnisart viewZeugnisart;
 		TableViewSource tableViewSource;
 		string selektion;
 		PickerViewController pickerMitarbeiterselektion;
 
-
-		private static ViewMitarbeiterselektion instance;
-		
-		public static ViewMitarbeiterselektion Instance {
-			get {
-				if(instance == null)
-				{
-					instance = new ViewMitarbeiterselektion();
-				}
-				
-				return instance;
-			}
-			set {
-				instance = value;
-			}
-		}
-
-
-
-		
 		public ViewMitarbeiterselektion () : base ("ViewMitarbeiterselektion", null)
 		{
 			this.Title = "Mitarbeiterselektion";
@@ -53,6 +37,23 @@ namespace ZgenMobil
 			}
 		}		
 
+		/// <summary>
+		/// Zum Erzeugen eines Singletons
+		/// </summary>
+		private static ViewMitarbeiterselektion instance;
+		
+		public static ViewMitarbeiterselektion Instance {
+			get {
+				if(instance == null)
+				{
+					instance = new ViewMitarbeiterselektion();
+				}	
+				return instance;
+			}
+			set {
+				instance = value;
+			}
+		}
 		
 		public override void DidReceiveMemoryWarning ()
 		{
@@ -61,13 +62,14 @@ namespace ZgenMobil
 			
 			// Release any cached data, images, etc that aren't in use.
 		}
-		
+
+		/// <summary>
+		/// Ergänzende Einstellungsmöglichkeiten, nachdem die View geladen wurde. 
+		/// </summary>
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 
-			//StringBuilder datum = new StringBuilder(10);
-			//datum = System.DateTime.Now;
 			labelDate.Text = "";
 
 			string datum = System.DateTime.Now.ToString();
@@ -79,20 +81,18 @@ namespace ZgenMobil
 
 			toolbarSelektion.Hidden = true;
 
-
 			//create pickerView für Mitarbeiterselektion
 			string[] items = new string[3]{"Alle Mitarbeiter" , "Direkt unterstellte Mitarbeiter" , "Alle Org-Einheiten"};
 			pickerMitarbeiterselektion = new PickerViewController(items);
 			labelSelektion.Text = items[0];
-
-			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
-
-		//build table
+		/// <summary>
+		/// Parsen der OData-Struktur und Ausgabe der Tabelle
+		/// </summary>
+		/// <param name="respXml">Resp xml.</param>
 		public void buildTable(string respXml)
 		{
-
 			XmlDocument xmlDoc = new XmlDocument();
 			xmlDoc.LoadXml(respXml);
 
@@ -103,8 +103,7 @@ namespace ZgenMobil
 			xmlManager.AddNamespace("m"		, "http://schemas.microsoft.com/ado/2007/08/dataservices/metadata");
 			xmlManager.AddNamespace("sap"	, "http://www.sap.com/Protocols/SAPData");
 			xmlManager.AddNamespace("base"	, "HTTP://SCDECC.SCDINTERN.DE:8000/sap/opu/sdata/SCD/ZGEN_MI_EMPLOYEES/");
-			
-			
+
 			XmlNodeList elements = xmlDoc.DocumentElement.SelectNodes("./atom:entry" , xmlManager);
 			Console.WriteLine("test count: " + elements.Count.ToString());
 
@@ -113,8 +112,7 @@ namespace ZgenMobil
 			List <string> listTeilbereich = new List<string>();
 			List <string> listOrg = new List<string>();
 			List <NSData> listImg = new List<NSData>();
-
-			
+				
 			foreach (XmlNode element in elements)
 			{
 				XmlNodeList propName = element.SelectSingleNode("./atom:content/m:properties/d:ENAME" , xmlManager).ChildNodes;
@@ -156,23 +154,15 @@ namespace ZgenMobil
 					NSData data = NSData.FromArray(imgBytes);
 					listImg.Add(data);
 				}
-
 			}
-			
-			//TagName("d:PERNR");
-			//TagName("d:ENAME");
-			//TagName("d:ORGTX");
-			//TagName("d:PERSK");
-			//TagName("d:BTRTX");
-
-
 			tableViewSource = new TableViewSource(this , listName, listPernr, listTeilbereich, listOrg, listImg);
 			tableView.Source = tableViewSource;
-
-
-
 		}
 
+		/// <summary>
+		/// ActionBtnDate
+		/// </summary>
+		/// <param name="sender">Sender.</param>
 		partial void actionBtnDate (NSObject sender)
 		{
 			if(pickerView.Hidden == false)
@@ -185,15 +175,17 @@ namespace ZgenMobil
 			toolbarDate.Hidden = false;
 		}
 
+		/// <summary>
+		/// Actions the button selektion.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
 		partial void actionBtnSelektion (NSObject sender)
 		{
 			if(datumPicker.Hidden == false)
 			{
 				datumPicker.Hidden = true;
 				toolbarDate.Hidden = true;
-
 			}
-
 			pickerView.Model = pickerMitarbeiterselektion;
 			tableView.Hidden = true;
 			pickerView.Hidden = false;
@@ -203,9 +195,12 @@ namespace ZgenMobil
 			{
 				selektion = pickerMitarbeiterselektion.SelectedSelektion;
 			};
-
 		}
 
+		/// <summary>
+		/// Actions the selektion done.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
 		partial void actionSelektionDone (NSObject sender)
 		{
 			labelSelektion.Text = selektion;
@@ -213,13 +208,14 @@ namespace ZgenMobil
 			toolbarSelektion.Hidden = true;
 			tableView.Hidden = false;
 		}
-
+		/// <summary>
+		/// Actions the button date done.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
 		partial void actionBtnDateDone (NSObject sender)
 		{
-
 			StringBuilder sb = new StringBuilder(datumPicker.Date.ToString());
 			sb.Replace("-",".");
-
 
 			string yy = sb[0].ToString() + sb[1].ToString() + sb[2].ToString() + sb[3].ToString();
 			string mm = sb[5].ToString() + sb[6].ToString();
@@ -229,24 +225,28 @@ namespace ZgenMobil
 			Console.WriteLine( "hier " +  datumPicker.Date.ToString());
 
 
-			labelDate.Text = dd+pk+mm+pk+yy;//datumPicker.Date.ToString();
+			labelDate.Text = dd+pk+mm+pk+yy;
 
 			toolbarDate.Hidden = true;
 			datumPicker.Hidden = true;
 		}
 
+		/// <summary>
+		/// Daten des selektierten Mitarbeiters
+		/// </summary>
+		/// <param name="name">Name.</param>
+		/// <param name="pernr">Pernr.</param>
+		/// <param name="teilbereich">Teilbereich.</param>
+		/// <param name="org">Org.</param>
+		/// <param name="img">Image.</param>
 		public void mitarbeiterSelected(string name, string pernr , string teilbereich, string org, NSData img)
 		{
 			if(viewZeugnisart == null){
-
 				viewZeugnisart =  ViewZeugnisart.Instance;
 			}
-
-
 			this.NavigationController.PushViewController(viewZeugnisart, true);
 			viewZeugnisart.setLabels(name, pernr, teilbereich, org, img);
 		}
-		
 	}
 }
 

@@ -15,5 +15,10 @@
 	</array>
 	<key>MinimumOSVersion</key>
 	<string>3.2</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Icon-72</string>
+		<string>Icon-72@2x</string>
+	</array>
 </dict>
 </plist>

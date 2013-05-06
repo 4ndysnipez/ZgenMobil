@@ -5,6 +5,9 @@ using MonoTouch.Foundation;
 
 namespace ZgenMobil
 {
+	/// <summary>
+	/// Table view source Klasse.
+	/// </summary>
 	public class TableViewSource : UITableViewSource 
 	{
 		private ViewMitarbeiterselektion _parentView;
@@ -15,9 +18,21 @@ namespace ZgenMobil
 		private List<string> _itemsOrg;
 		private List<NSData> _itemsImg;
 
-
+		/// <summary>
+		/// Gets or sets the selected row.
+		/// </summary>
+		/// <value>The selected row.</value>
 		public string SelectedRow { get; set; }
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ZgenMobil.TableViewSource"/> class.
+		/// </summary>
+		/// <param name="parentView">Parent view.</param>
+		/// <param name="itemsName">Items name.</param>
+		/// <param name="itemsPernr">Items pernr.</param>
+		/// <param name="itemsTeilbereich">Items teilbereich.</param>
+		/// <param name="itemsOrg">Items org.</param>
+		/// <param name="itemsImg">Items image.</param>
 		public TableViewSource (ViewMitarbeiterselektion parentView,	List<string> itemsName, 
 		                        										List<string> itemsPernr,
 		                        										List<string> itemsTeilbereich,
@@ -33,23 +48,40 @@ namespace ZgenMobil
 			_parentView = parentView;
 		}
 
+		/// <Docs>Table view displaying the sections.</Docs>
+		/// <returns>Number of sections required to display the data. The default is 1 (a table must have at least one section).</returns>
+		/// <para>Declared in [UITableViewDataSource]</para>
+		/// <summary>
+		/// Numbers the of sections.
+		/// </summary>
+		/// <param name="tableView">Table view.</param>
 		public override int NumberOfSections (UITableView tableView)
 		{
 			return 1;
 		}
 
+		/// <Docs>Table view displaying the rows.</Docs>
+		/// <summary>
+		/// Rowses the in section.
+		/// </summary>
+		/// <returns>The in section.</returns>
+		/// <param name="tableview">Tableview.</param>
+		/// <param name="section">Section.</param>
 		public override int RowsInSection (UITableView tableview, int section)
 		{
 			return _itemsName.Count;
 		}
 
+		/// <Docs>Table view requesting the cell.</Docs>
+		/// <summary>
+		/// Gets the cell.
+		/// </summary>
+		/// <returns>The cell.</returns>
+		/// <param name="tableView">Table view.</param>
+		/// <param name="indexPath">Index path.</param>
 		public override UITableViewCell GetCell(UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 		{
-			//cell = tableView.DequeueReusableCell ("Placeholder");
-			//cell = new UITableViewCell(UITableViewCellStyle.Subtitle, null);
-
 			row = new UITableViewCell(UITableViewCellStyle.Value1, null);
-			//(UITableViewCellStyle.Subtitle, "Placeholder");
 
 			row.SelectionStyle = UITableViewCellSelectionStyle.None;
 			row.DetailTextLabel.TextAlignment = UITextAlignment.Center;
@@ -61,6 +93,12 @@ namespace ZgenMobil
 			return row;
 		}
 
+		/// <Docs>Table view containing the row.</Docs>
+		/// <summary>
+		/// Rows the selected.
+		/// </summary>
+		/// <param name="tableView">Table view.</param>
+		/// <param name="indexPath">Index path.</param>
 		public override void RowSelected(UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 		{
 			string name = _itemsName[indexPath.Row].ToString();
@@ -75,10 +113,7 @@ namespace ZgenMobil
 			Console.WriteLine("Gewählte  OrgEinheit: " + org);
 
 			_parentView.mitarbeiterSelected(name, pernr, teilbereich, org, img);
-
 		}
-
-
 	}
 }
 

@@ -1,20 +1,32 @@
 using System;
 using System.Drawing;
-
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
 namespace ZgenMobil
 {
+	/// <summary>
+	/// View entwurf.
+	/// </summary>
 	public partial class ViewEntwurf : UIViewController
 	{
+		/// <summary>
+		/// Deklarationen
+		/// </summary>
 		ViewMitarbeiterselektion viewMitarbeiterselektion;
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ZgenMobil.ViewEntwurf"/> class.
+		/// </summary>
 		public ViewEntwurf () : base ("ViewEntwurf", null)
 		{
 			this.Title = "Zeugnisentwurf";
 		}
-	
+
+		/// <Docs>Called when the system is running low on memory.</Docs>
+		/// <summary>
+		/// Dids the receive memory warning.
+		/// </summary>
 		public override void DidReceiveMemoryWarning ()
 		{
 			// Releases the view if it doesn't have a superview.
@@ -22,14 +34,24 @@ namespace ZgenMobil
 			
 			// Release any cached data, images, etc that aren't in use.
 		}
-		
+
+		/// <summary>
+		/// Views the did load.
+		/// </summary>
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
-			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
+		/// <summary>
+		/// Builds the text view.
+		/// </summary>
+		/// <param name="bereitschaft">Bereitschaft.</param>
+		/// <param name="befaehigung">Befaehigung.</param>
+		/// <param name="wissen">Wissen.</param>
+		/// <param name="weise">Weise.</param>
+		/// <param name="erfolg">Erfolg.</param>
+		/// <param name="zusammen">Zusammen.</param>
 		public void buildTextView(string bereitschaft, string befaehigung , string wissen, string weise, string erfolg, string zusammen)
 		{
 			string person = ViewZeugnisart.Instance.Globname;
@@ -71,13 +93,17 @@ namespace ZgenMobil
 			textView.Text += zusammen+ nz+"\n";
 			textView.Text += schluss;
 		}
+
+		/// <summary>
+		/// Actions the button senden.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
 		partial void actionBtnSenden (NSObject sender)
 		{
 			new UIAlertView("Senden Erfolgreich", "Zeugnis wurde erfolgreich versendet",null,"OK",null).Show();
 			viewMitarbeiterselektion = ViewMitarbeiterselektion.Instance;
 			this.NavigationController.PopToViewController(viewMitarbeiterselektion,true);
 		}
-
 	}
 }
 

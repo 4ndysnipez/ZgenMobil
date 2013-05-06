@@ -93,7 +93,6 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Controller\ActionSheetDatePicker.cs" />
     <Compile Include="Views\ViewLogin.cs" />
     <Compile Include="Views\ViewLogin.designer.cs">
       <DependentUpon>ViewLogin.cs</DependentUpon>

@@ -21,13 +21,21 @@ namespace ZgenMobil
 		TableViewSource tableViewSource;
 		string selektion;
 		PickerViewController pickerMitarbeiterselektion;
+		private static ViewMitarbeiterselektion instance;
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ZgenMobil.ViewMitarbeiterselektion"/> class.
+		/// </summary>
 		public ViewMitarbeiterselektion () : base ("ViewMitarbeiterselektion", null)
 		{
 			this.Title = "Mitarbeiterselektion";
 			this.NavigationItem.SetHidesBackButton(true, true);
 		}
 
+		/// <summary>
+		/// Gets or sets the selektion.
+		/// </summary>
+		/// <value>The selektion.</value>
 		public string Selektion {
 			get {
 				return selektion;
@@ -38,10 +46,9 @@ namespace ZgenMobil
 		}		
 
 		/// <summary>
-		/// Zum Erzeugen eines Singletons
+		/// Gets or sets the instance.
 		/// </summary>
-		private static ViewMitarbeiterselektion instance;
-		
+		/// <value>The instance.</value>
 		public static ViewMitarbeiterselektion Instance {
 			get {
 				if(instance == null)
@@ -54,7 +61,11 @@ namespace ZgenMobil
 				instance = value;
 			}
 		}
-		
+
+		/// <Docs>Called when the system is running low on memory.</Docs>
+		/// <summary>
+		/// Dids the receive memory warning.
+		/// </summary>
 		public override void DidReceiveMemoryWarning ()
 		{
 			// Releases the view if it doesn't have a superview.

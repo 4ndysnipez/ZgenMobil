@@ -1,34 +1,22 @@
 using System;
 using System.Net;
-//using System.Xml;
 using System.Linq;
 using System.IO;
-//using System.Collections.Generic;
-//using OData;
-
-
-
-
 
 namespace ZgenMobil
 {
 	public class HttpRestController
 	{
+		/// <summary>
+		/// Deklarations
+		/// </summary>
 		private static HttpRestController instance;
+		string loggedUser;
+		bool userLogged = false;
 
-		public static HttpRestController Instance {
-			get {
-				if(instance == null)
-				{
-					instance = new HttpRestController();
-				}
-				return instance;
-			}
-			set {
-				instance = value;
-			}
-		}
-	
+		/// <summary>
+		/// Konstanten der URLs der Webservices
+		/// </summary>
 		private const string basic_url 					= "http://192.168.12.115:8000/sap/opu/sdata/";
 		//private const string basic_url 					= "http://scdecc.scdintern.de:8000/sap/opu/sdata/";
 		private const string serviceEmployee 			= "SCD/ZGEN_MI_EMPLOYEES/EMPLOYEES";
@@ -41,11 +29,10 @@ namespace ZgenMobil
 		private const string serviceReferenceSteps 		= "SCD/ZGEN_MI_REF_REFERENCE_STEPS/REFERANCE_STEPS";
 		private const string serviceReferencePreviews 	= "SCD/ZGEN_MI_REF_REFERENCE_PREVIEW/REFERANCE_PREVIEWS";
 
-
-
-
-		string loggedUser;
-
+		/// <summary>
+		/// Gets or sets the logged user.
+		/// </summary>
+		/// <value>The logged user.</value>
 		public string LoggedUser {
 			get {
 				return loggedUser;
@@ -55,8 +42,10 @@ namespace ZgenMobil
 			}
 		}
 
-		 bool userLogged = false;
-
+		/// <summary>
+		/// Gets or sets a value indicating whether this <see cref="ZgenMobil.HttpRestController"/> user logged.
+		/// </summary>
+		/// <value><c>true</c> if user logged; otherwise, <c>false</c>.</value>
 		public bool UserLogged {
 			get {
 				return userLogged;
@@ -66,27 +55,43 @@ namespace ZgenMobil
 			}
 		}
 
+		/// <summary>
+		/// Singleton of HttpRestController
+		/// </summary>
+		/// <value>The instance.</value>
+		public static HttpRestController Instance {
+			get {
+				if(instance == null)
+				{
+					instance = new HttpRestController();
+				}
+				return instance;
+			}
+			set {
+				instance = value;
+			}
+		}
 
-		
+		/// <summary>
+		/// Constructor
+		/// </summary>
 		private HttpRestController ()
 		{
 		}
 
+		/// <summary>
+		/// Baut den Request des Webservices auf
+		/// </summary>
+		/// <returns>The rest URL.</returns>
+		/// <param name="select_service">Select_service.</param>
+		/// <param name="login_data">Login_data.</param>
 		public string buildRestUrl(string select_service, string login_data)
 		{
-
-
-			//select_service = serviceEmployee; 
-			
 			if(userLogged == false)
 			{
 				Console.WriteLine("login case IS null");
 				loggedUser = login_data;
-
-				//TODO: umstellen
-				//select_service = serviceOrgViews;
 				select_service = serviceEmployee;
-
 			}
 			else if(userLogged == true)
 			{
@@ -94,7 +99,6 @@ namespace ZgenMobil
 			}
 
 			string whole_url = basic_url + select_service;
-
 			string readerText = "";
 
 			try
@@ -104,27 +108,15 @@ namespace ZgenMobil
 				request.ContentType = "application/atom+xml";
 				request.Method = "GET";
 				
-				//request.Headers["X-Requested-With"] = "XMLHttpRequest";
-				//request.Headers["DataServiceVersion"] ="2.0";
-				//request.Headers["X-CSRF-Token"] = "fetch";
-				//request.Headers["Authorization"] = base64Encode(loggedUser, loggedPw);
-				
 				HttpWebResponse resp = (HttpWebResponse)request.GetResponse();
-
 				if(resp.StatusCode == HttpStatusCode.OK)
 				{
 					StreamReader sr = new StreamReader(resp.GetResponseStream());
-
 					string srText = sr.ReadToEnd();
-
-
 					resp.Close();
-
-
 					readerText = srText;
 				} 
 				return readerText;
-
 			} 
 
 			catch (WebException ex)
@@ -134,8 +126,6 @@ namespace ZgenMobil
 				return "fehler";
 			}
 		}
-		
-		
 	}
 }
 

@@ -7,9 +7,14 @@ using MonoTouch.UIKit;
 
 namespace ZgenMobil
 {
+	/// <summary>
+	/// View beurteilung Klasse.
+	/// </summary>
 	public partial class ViewBeurteilung : UIViewController
 	{
-
+		/// <summary>
+		/// Deklarationen
+		/// </summary>
 		ViewEntwurf viewEntwurf;
 		string[] arbeitsbereitschaft;
 		string[] arbeitsbefaehigung;
@@ -19,33 +24,40 @@ namespace ZgenMobil
 		string[] zusammenfassung;
 
 
-
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ZgenMobil.ViewBeurteilung"/> class.
+		/// </summary>
 		public ViewBeurteilung () : base ("ViewBeurteilung", null)
 		{
 			this.Title = "Beurteilung";
 		}
-		
+
+		/// <Docs>Called when the system is running low on memory.</Docs>
+		/// <summary>
+		/// Dids the receive memory warning.
+		/// </summary>
 		public override void DidReceiveMemoryWarning ()
 		{
 			// Releases the view if it doesn't have a superview.
 			base.DidReceiveMemoryWarning ();
-			
-			// Release any cached data, images, etc that aren't in use.
 		}
-		
+
+		/// <summary>
+		/// Views the did load.
+		/// </summary>
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 
 			propScrollView.Frame = new RectangleF(0,0,768,879);
-			
 			propScrollView.ContentSize = new SizeF(768,880);
-			
 			this.View.AddSubview(propScrollView);
-
-			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
+		/// <summary>
+		/// Actions the button erstellen.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
 		partial void actionBtnErstellen (NSObject sender)
 		{
 			if(viewEntwurf == null)
@@ -73,6 +85,10 @@ namespace ZgenMobil
 
 		}
 
+		/// <summary>
+		/// Checks the segments.
+		/// </summary>
+		/// <returns>The segments.</returns>
 		public string checkSegments()
 		{
 			if(segmentArbBereitschaft.SelectedSegment < 0)
@@ -99,10 +115,14 @@ namespace ZgenMobil
 			{
 				return "fehler";
 			}
-
 			else{return "OK"; }
 		}
 
+		/// <summary>
+		/// Builds the arbeitsbereitschaft.
+		/// </summary>
+		/// <returns>The arbeitsbereitschaft.</returns>
+		/// <param name="item">Item.</param>
 		public string buildArbeitsbereitschaft(int item)
 		{
 			string person = ViewZeugnisart.Instance.Globname;
@@ -117,9 +137,13 @@ namespace ZgenMobil
 			arbeitsbereitschaft[4] = 	"Die Arbeitsmotivation von " + person + " war insgesamt zufrieden stellend.";
 
 			return arbeitsbereitschaft[item];
-
 		}
 
+		/// <summary>
+		/// Builds the arbeitsbefaehigung.
+		/// </summary>
+		/// <returns>The arbeitsbefaehigung.</returns>
+		/// <param name="item">Item.</param>
 		public string buildArbeitsbefaehigung(int item)
 		{
 			string person = ViewZeugnisart.Instance.Globname;
@@ -139,6 +163,11 @@ namespace ZgenMobil
 			return arbeitsbefaehigung[item];
 		}
 
+		/// <summary>
+		/// Builds the wissen.
+		/// </summary>
+		/// <returns>The wissen.</returns>
+		/// <param name="item">Item.</param>
 		public string buildWissen(int item)
 		{
 			string person = ViewZeugnisart.Instance.Globname;
@@ -159,6 +188,11 @@ namespace ZgenMobil
 			return wissen[item];
 		}
 
+		/// <summary>
+		/// Builds the arbeitsweise.
+		/// </summary>
+		/// <returns>The arbeitsweise.</returns>
+		/// <param name="item">Item.</param>
 		public string buildArbeitsweise(int item)
 		{
 			string person = ViewZeugnisart.Instance.Globname;
@@ -176,6 +210,11 @@ namespace ZgenMobil
 			return arbeitsweise[item];
 		}
 
+		/// <summary>
+		/// Builds the arbeitserfolg.
+		/// </summary>
+		/// <returns>The arbeitserfolg.</returns>
+		/// <param name="item">Item.</param>
 		public string buildArbeitserfolg(int item)
 		{
 			string person = ViewZeugnisart.Instance.Globname;
@@ -189,6 +228,11 @@ namespace ZgenMobil
 			return arbeitserfolg[item];
 		}
 
+		/// <summary>
+		/// Builds the zusammenfassung.
+		/// </summary>
+		/// <returns>The zusammenfassung.</returns>
+		/// <param name="item">Item.</param>
 		public string buildZusammenfassung(int item)
 		{
 			string person = ViewZeugnisart.Instance.Globname;

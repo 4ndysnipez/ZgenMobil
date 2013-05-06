@@ -4,11 +4,17 @@ using System.Drawing;
 
 namespace ZgenMobil
 {
+	/// <summary>
+	/// Klasse LoaderOverlay
+	/// </summary>
 	public class LoadingOverlay : UIView {
 		// control declarations
 		UIActivityIndicatorView activitySpinner;
 		UILabel loadingLabel;
-		
+
+		/// <summary>
+		/// Singleton property
+		/// </summary>
 		private static LoadingOverlay instance;
 		
 		public static LoadingOverlay Instance {
@@ -24,7 +30,11 @@ namespace ZgenMobil
 				instance = value;
 			}
 		}
-		
+
+		/// <summary>
+		/// Erstellt neue Instanz von <see cref="ZgenMobil.LoadingOverlay"/> class.
+		/// </summary>
+		/// <param name="frame">Frame.</param>
 		private LoadingOverlay (RectangleF frame) : base (frame)
 		{
 			// configurable bits

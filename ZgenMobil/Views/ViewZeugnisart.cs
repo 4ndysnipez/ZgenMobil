@@ -210,11 +210,21 @@ namespace ZgenMobil
 		/// <param name="sender">Sender.</param>
 		partial void actionBtnWeiter (NSObject sender)
 		{
-			if(viewTaetigkeitsbeschreibung == null)
+			if(labelZArt.Text.Length < 1)
 			{
-				viewTaetigkeitsbeschreibung = new ViewTaetigkeitsbeschreibung();
+				new UIAlertView("Fehler", "Bitte wählen Sie eine Zeugnisart.",null,"OK",null).Show();
 			}
-			this.NavigationController.PushViewController(viewTaetigkeitsbeschreibung, true);
+			else if(labelZGrund.Text.Length < 1)
+			{
+				new UIAlertView("Fehler", "Bitte wählen Sie einen Zeugnisgrund.",null,"OK",null).Show();
+			}
+			else{
+				if(viewTaetigkeitsbeschreibung == null)
+				{
+					viewTaetigkeitsbeschreibung = new ViewTaetigkeitsbeschreibung();
+				}
+				this.NavigationController.PushViewController(viewTaetigkeitsbeschreibung, true);
+			}
 		}
 	}
 }

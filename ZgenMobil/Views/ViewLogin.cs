@@ -72,19 +72,14 @@ namespace ZgenMobil
 		/// <param name="sender">Sender.</param>
 		partial void actionBtnAnmelden (NSObject sender)		
 		{
-			View.Add(LoadingOverlay.Instance);
+			this.View.Add(LoadingOverlay.Instance);
+
 			Console.WriteLine("overlay added");
 
 			string logindata = base64Encode(txtFldUser.Text, txtFldPasswort.Text);//
 			Console.WriteLine("logindata: " + logindata);
 
-			if(httpRestController == null){
-				Console.WriteLine("create httpcctrl");
-				httpRestController = HttpRestController.Instance;
-			}
-
-			string respRest = httpRestController.buildRestUrl("SCD/ZGEN_MI_ORG_VIEWS/ORGVIEWS", logindata);
-			httpRestController.buildRestUrl(respRest, logindata);
+			string respRest = HttpRestController.Instance.buildRestUrl("SCD/ZGEN_MI_ORG_VIEWS/ORGVIEWS", logindata);
 
 			if(respRest == "fehler")
 			{
@@ -93,17 +88,10 @@ namespace ZgenMobil
 			}
 			else if(respRest != "fehler")
 			{
-				if(viewMitarbeiterselektion == null){
-					Console.WriteLine("mitarb ist null");
-					viewMitarbeiterselektion =  ViewMitarbeiterselektion.Instance;
-				}
-				else if(viewMitarbeiterselektion != null)
-				{
-					Console.WriteLine("mitarb ist schon da");
-				}
-				LoadingOverlay.Instance.Hide();
-				this.NavigationController.PushViewController(viewMitarbeiterselektion, true);
+				viewMitarbeiterselektion =  ViewMitarbeiterselektion.Instance;
+				this.NavigationController.PushViewController(ViewMitarbeiterselektion.Instance, true);
 				viewMitarbeiterselektion.buildTable(respRest);
+				LoadingOverlay.Instance.Hide();
 			}
 		}
 	}

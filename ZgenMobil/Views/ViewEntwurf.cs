@@ -21,6 +21,11 @@ namespace ZgenMobil
 		public ViewEntwurf () : base ("ViewEntwurf", null)
 		{
 			this.Title = "Zeugnisentwurf";
+			this.NavigationItem.SetRightBarButtonItem(
+				new UIBarButtonItem("Logout" , UIBarButtonItemStyle.Plain, (sender, args) =>
+			                    {
+					ViewMitarbeiterselektion.Instance.Logout();
+			}), true);
 		}
 
 		/// <Docs>Called when the system is running low on memory.</Docs>

@@ -21,6 +21,11 @@ namespace ZgenMobil
 		public ViewTaetigkeitsbeschreibung () : base ("ViewTaetigkeitsbeschreibung", null)
 		{
 			this.Title = "Tätigkeitsbeschreibung";
+			this.NavigationItem.SetRightBarButtonItem(
+				new UIBarButtonItem("Logout" , UIBarButtonItemStyle.Plain, (sender, args) =>
+			    {
+					ViewMitarbeiterselektion.Instance.Logout();
+			}), true);
 		}
 
 		/// <Docs>Called when the system is running low on memory.</Docs>

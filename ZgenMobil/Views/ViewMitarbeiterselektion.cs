@@ -30,6 +30,12 @@ namespace ZgenMobil
 		{
 			this.Title = "Mitarbeiterselektion";
 			this.NavigationItem.SetHidesBackButton(true, true);
+			this.NavigationItem.SetRightBarButtonItem(
+				new UIBarButtonItem("Logout" , UIBarButtonItemStyle.Plain, (sender, args) =>
+			    {
+					Logout();
+				}), true);
+
 		}
 
 		/// <summary>
@@ -159,7 +165,6 @@ namespace ZgenMobil
 					{
 						imgBase64 += "=";
 						Console.WriteLine("imgBase64 nicht mod 4!");
-
 					}
 					byte[] imgBytes = Convert.FromBase64String(imgBase64);
 					NSData data = NSData.FromArray(imgBytes);
@@ -258,6 +263,17 @@ namespace ZgenMobil
 			this.NavigationController.PushViewController(viewZeugnisart, true);
 			viewZeugnisart.setLabels(name, pernr, teilbereich, org, img);
 		}
+
+		/// <summary>
+		/// Logout this instance.
+		/// </summary>
+		public void Logout()
+		{
+			this.NavigationController.PopToRootViewController(true);
+			HttpRestController.Instance.UserLogged = false;
+			new UIAlertView("Logout", "Successful",null,"OK",null).Show();
+		}
+
 	}
 }
 

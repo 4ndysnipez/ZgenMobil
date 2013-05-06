@@ -28,6 +28,11 @@ namespace ZgenMobil
 		public ViewZeugnisart () : base ("ViewZeugnisart", null)
 		{
 			this.Title = "Zeugnisart wählen";
+			this.NavigationItem.SetRightBarButtonItem(
+				new UIBarButtonItem("Logout" , UIBarButtonItemStyle.Plain, (sender, args) =>
+			                    {
+					ViewMitarbeiterselektion.Instance.Logout();
+			}), true);
 		}
 
 		/// <summary>
